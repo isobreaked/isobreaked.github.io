@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1558</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1558 - 2023 Japan MO Finals, P4 of 5, N</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Determine all positive integers \(n\) such that \(n\) divides \(\phi(n)^{d(n)}+1\) but \(d(n)^5\) does not divide \(n^{\phi(n)}-1\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>
+The first condition means that \(\phi(n)\) is coprime to \(n\), that is, \(n\) must be squarefree, which means \(d(n)\) is a power of \(2\). Thus the second condition says that some power of \(2\) does not divide \(n^{\phi(n)} - 1\).
+\[2^{5k} \nmid (p_1p_2 \dots p_k)^{(p_1 - 1)(p_2 - 1) \dots (p_k - 1)} - 1 \implies (p_1p_2 \dots p_k)^{(p_1 - 1)(p_2 - 1) \dots (p_k - 1)} \not \equiv 1 \pmod{2^k}\]
+Since \(\phi(2^{5k}) = 2^{5k-1}\), either \(p_1 = 2\) (which gives the solution \(n = 2\)), else no \(p_i = 2\) and
+\[2^{5k} \nmid (p_1p_2\dots p_k)^{(p_1 - 1)(p_2 - 1) \dots (p_k - 1)} - 1\]
+\[p_1p_2 \dots p_k \mid [(p_1 - 1)(p_2 - 1) \dots (p_k - 1)]^{2^k} + 1 \implies [(p_1 - 1)(p_2 - 1) \dots (p_k - 1)]^{2^k} \equiv -1 \pmod{p_1p_2 \dots p_k}\] 
+The order of \(\phi(n)\) modulo \(p_i\) hence divides \(\gcd(p_i - 1, 2^{k+1})\). This value is either \(2^k\) or \(2^{k+1}\) since \(\phi(n)\) verifiably has \(n\) even factors. But it can't be \(2^r\) for \(r < k+1\) since otherwise the \(2^k\)th power would be \(1 \pmod{p_1p_2 \dots p_k}\). Thus the order is \(2^{k+1}\) and \(2^{k+1} \mid p_i - 1\) for all \(i\). However, now note that
+\[(p_1p_2\dots p_k)^{(p_1 - 1)(p_2 - 1) \dots (p_k - 1)} \equiv (p_1p_2\dots p_k)^{a \cdot 2^{k(k+1)}} \equiv (p_1p_2\dots p_k)^{a \cdot 2^{k(k+1)} \pmod{2^{5k-1}}} \pmod{2^{5k}} \equiv^? 1\]
+Thus we have reduced to the case where \(k \in \{1, 2, 3\}\), since otherwise \(\equiv 1\). </p>
+<p>Suppose \(k = 1\). Then \(n = p\), \(\phi(n) = p - 1\), \(d(n) = 2\), so \(p \mid (p - 1)^2 + 1\), or \(p = 2\). Suppose \(k = 2\), then \(n = pq\), \(\phi(n) = pq - p - q + 1\), \(d(n) = 4\). Then \(p, q \equiv 1 \pmod{8}\).
+\[1024 \nmid pq^{pq - p-q+1} - 1\]
+But fortunately we can use LTE and get \(\nu_2(RHS) = \nu_2(pq - 1) + \nu_2((p-1)(q-1)) \ge 3 + 6 = 9\). Bruh even this is not good enough? Oh we can go into mod \(16\) and get one extra. </p>
+<p>Similarly suppose \(k = 3\), then \(n = pqr\), \(\phi(n) = (p-1)(q-1)(r-1)\), \(d(n) = 8\). Then \(p, q, r \equiv 1 \pmod{16}\).
+\[2^{15} \nmid pqr^{(p-1)(q-1)(r-1)} - 1\]
+Again we can use LTE and get \(\nu_2(RHS) = \nu_2(pqr - 1) + \nu_2((p-1)(q-1)(r-1)) \ge 4 + 12 = 16 > 15\) so we are done.</p>
+</div>
+<h2>Idea</h2>
+<p>Pretty straightforward. Spot LTE in \(v_p\) and exponent things. Duh.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

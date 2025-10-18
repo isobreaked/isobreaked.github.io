@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>8 October</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+h2 {font-size : 1.2em; color:#774466;}
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1950 - N</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(a_1 < a_2 < a_3 < \dots\) be positive integers such that \(a_{k+1}\) divides \(2(a_1+a_2+\dots+a_k)\) for every \(k\geqslant 1\). Suppose that for infinitely many primes \(p\), there exists \(k\) such that \(p\) divides \(a_k\). Prove that for every positive integer \(n\), there exists \(k\) such that \(n\) divides \(a_k\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Let us first try to show that for all primes \(q\) there is some index \(k\) for which \(q \mid a_k\). This already seems unapproachable. Somehow we must use the conditions we have with <i>synergy</i>. Let us first show that there must exist some index \(i\) such that \(q \mid a_1 + a_2 + \dots + a_i\). This is also severely nontrivial for whatever reason. Okay, let me denote by \(b_{k+1}\) the value \(2(a_1+a_2 + \dots + a_k)/a_{k+1}\). Then
+\[2(a_1 + a_2 + \dots + a_k) = (b_k + 2)a_k\]</p>
+<p>The fact that there exists such an index \(i\) for \(q\) means that we have no control over what the residues mod \(q\) want to do - which is so absurd because it looks like the problem is completely free (which in fact, deep down, we know is not because there are too many conditions). The problem is that these conditions are not implementable trivially into what we are doing.</p>
+<p>Okay let's just work up from \(a_1\) and see what can possibly go wrong. So \(a_2 \mid 2a_1\), which means \(a_2 = 2a_1\). Then \(a_3 \mid 2(a_1 + 2a_1) = 6a_1\), which means \(a_3 = 3a_1\) or \(6a_1\). Then \(a_4 \mid 2(a_1 + a_2 + a_3)\) which means if \(a_3 = 3a_1\), then \(a_4 = 4a_1\), \(6a_1\), \(12a_1\) and if \(a_3 = 6a_1\), then \(a_4 = 9a_1\), \(18a_1\). Okay, so it's not true that \(a_1\) doesn't matter because if \(a_4 = 4a_1\), then \(a_5 = 20a_1/3 \) is an option.</p>
+<p>Again, we somehow want to show that if \(q \nmid a_1 + a_2 + \dots + a_i\) for any \(i\) then there are only finitely many primes dividing \(a_i\).</p>
+<p><b>After mock</b>: (Okay, let me go back to \(b_k\). By definition, \(2(a_1 + a_2 + \dots + a_{k-1}) = b_ka_k\). Wait, note that
+\[(b_k + 2)a_k = b_{k+1}a_{k+1} = 2(a_1 + a_2 + \dots + a_k) \implies b_k + 2 > b_{k+1}\]
+Omgggg wait so either \(b_i\) is bounded or \(b_i\) goes through every single integer value. Wait never mind because if \(b_i\) is bounded then the prime factors of \(a_i = a_{i-1}(b_{i-1}+2)/b_i\) will be bounded!!! So \(b_i\) goes through every single integer value, which means \(a_1 + a_2 + \dots + a_i\) is divisible by each \(n\) for some \(i\). And now we will take the point \(b_i\) where \(n = b_i\) and \(n + 1 = b_{i+1}\). This gives
+\[(n + 2)a_i = (n+1) a_{i+1} = 2(a_1 + a_2 + \dots + a_i) \]
+and since \(\gcd(n+1,n+2) = 1\), \(n + 1 \mid a_i\), and we are done.)
+</p>
+</div>
+
+<h1>Problem 1229 - A</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(\mathbf N\) be the set of all positive integers. A subset \(A\) of \(\mathbf N\) is sum-free if, whenever \(x\) and \(y\) are (not necessarily distinct) members of \(A\), their sum \(x+y\) does not belong to \(A\). Determine all surjective functions \(f:\mathbf N\to\mathbf N\) such that, for each sum-free subset \(A\) of \(\mathbf N\), the image \(\{f(a):a\in A\}\) is also sum-free.</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Odd numbers are the 'biggest' sum-free subset - well, not really. In general, anything \(\not \equiv 0 \pmod{p}\) is a sum-free space? No - any subset of the form \(\equiv x \pmod{p}\) such that \(x \not \equiv 0\) is sum-free. In fact, we can take sum-free subsets of \(\mathbf{F}_p\) and extend those to \(\mathbf{N}\). </p>
+<p>Here's a weak ocondition: \(f(A)\) must not contain \((x, 2x)\) for a sum-free \(A\). Note that any pair \((a, b)\) is a sum-free subset unless \(a = 2b\) or \(b = 2a\). If we look at some (we say <i>some</i> because \(f\) may not be injective) pre-image of \((x, 2x)\), say \((a, b)\), then \((a, b)\) cannot be sum-free, implying \(a = 2b\) or \(b = 2a\). This implies some sort of psudoinjectivity in the following manner: fix an \(x\) and find a \(b\) such that \(f(b) = 2x\). Now if \(a\) satisfies \(f(a) = x\), then \(a = 2b\) or \(a = b/2\). Thus there are at most two values of \(a\) that satisfy \(f(a) = x\) for any \(x\). Also importantly, note that a non-sum-free subset may go to a sum-free subset. </p>
+<p>Let's now look at a preimage of \((x, 2x, 4x)\) because of course this is bound to be better than \((x, 2x, 3x)\) (actually, this is probably worse). In any case, if \(y\) is a preimage of \(4x\), then \(y/2\) or \(2y\) is a preimage of \(2x\), which means \(y/4\) and \(4y\) are the only valid candidates for a pre-image of \(x\). Ooh, pause - since the preimage of \((x, 2x)\) must also be a non-sum-free subset, it cannot be \((y/4, 2y)\) or \((4y, y/2)\). Thus the preimage of \((x, 2x, 4x)\) can only be one of \((y/4, y/2, y)\) and \((4y, 2y, y)\). But wait: \(4x\) can have another preimage, say \(z\) (which is either \(4y\) or \(y/4\)), in which case another chain forms: either \((z/4, z/2, z)\) or \((4z, 2z, z)\) for one of these \(z\). If \(z = y/4\), then the first chain does not fit both of the \(y\) chains, but the second chain \((y, y/2, y/4)\) fits with \((y/4, y/2, y)\). Similarly, if \(z = 4y\), then the second chain does not fit any \(y\) chain, but the first chain \((y, 2y, 4y)\) fits with \((4y, 2y, y)\). Thus, the possible sets of preimages of \((x, 2x, 4x)\) are:
+\[\{(y/4, y/2, y)\}, \;\;\;\; \{(4y, 2y, y)\}, \;\;\;\; \{(y/4, y/2, y), \; (y, y/2, y/4)\} \;\;\;\; \{(4y, 2y, y), \; (y, 2y, 4y)\}\]
+An important thing to note here is that no matter what set we look at, the preimage of \(2x\) is constant within the set. This means that there can only be one preimage of \(2x\) - we don't know what it is, but there can only be one. Furthermore, since \(4x\) is also even, this invalidates the last two sets, implying that the only possible sets are singleton sets: \(\{(y/4, y/2, y)\}\) and \(\{4y, 2y, y\}\). Thus, since there is only one value \(f^{-1}(x)\) can take, \(f\) must be injective overall. Finally, notice that if the chain is \(\{4y, 2y, y\}\), then by induction this chain implies that the \(\nu_2(f^{-1}(x)) \to \infty\), or rather, a finite \(\nu_2\) just is not possible. Thus the only working chain is \(\{y/4, y/2, y\}\), which continues by induction to give a form \(\{t, 2t, 4t, \dots\} \to \{x, 2x, 4x, \dots\}\).</p>
+<p>Now let's look at the preimage of \((x, 3x, 4x)\). Suppose the preimage of \(x\) is \(t\), which means \(4t \to 4x\), and since \(\{t, 4t, f^{-1}(3x)\}\) must form a non-sum-free subset, due to injectivity, \(f^{-1}(3x)\) can only be \(3t\) or \(5t\). But similarly for \((x, 4x, 5x)\), \(f^{-1}(5x)\) can only be \(3t\) or \(5t\). But note that \(f^{-1}(6x)\) can now be \(6t\) or \(10t\), and since \((x, 5x, 6x)\) is not sum-free, we must have \(f(5t) = 5x\) and \(f(3t) = 3x\). We want to generalize this approach to all odd numbers, so let us analyze what we have done. Wait - we are actually done, right? Consider the preimage of \((x, rx, (r+1)x)\). Suppose that \(r\) is even, in which case if \(f(t) = x\), then we know by strong induction that \(f(rt) = rx\). Now since the preimage \((t, rt, f^{-1}((r+1)x))\) of our set must not be sum-free, we must have (and as always note that we cannot take \(2t\) or \(2rt\) because of injectivity), \(f^{-1}((r+1)x) = (r + 1)t\) or \((r-1)t\). But \((r-1)t\) is taken by \((r-1)x\), so the strong inductive hypothesis is complete.  </p>
+<p>Since \(f\) is surjective, and \(f(x) = f^{-1}(1) x\), we have \(f^{-1}(1) = 1\), and \(f(x) = x\) for all \(x\), which clearly works.</p>
+</div>
+
+<h1>Problem 1825 - C</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>We call a system of non-empty sets \(H\) entwined, if for every disjoint pair of sets \(A\) and \(B\) in \(H\) there exists \(b\in B\) such that \(A\cup\{b\}\) is in \(H\) or there exists \(a\in A\) such that \(B\cup\{a\}\) is in \(H.\)</p>
+<p>Let \(H\) be an entwined system of sets containing all of \(\{1\},\{2\},\ldots,\{n\}.\) Prove that if \(n>k(k+1)/2,\) then \(H\) contains a set with at least \(k+1\) elements, and this is sharp for every \(k,\) i.e. if \(n=k(k+1)/2\), it is possible that every set in \(H\) has at most \(k\) elements.</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Let's look at a small case to understand what is going on. Suppose \(n = 7\), so \(k = 3\) and there should exist a set with \(k + 1= 4\) elements. Now, obviously the sets \(\{1, 2\}\), \(\{1, 3\}\), \(\dots\), \(\{6, 7\}\) all exist. Since \(\{1, 2\}\) and \(\{3, 4\}\) are disjoint, there is some set with \(3\) elements, say \(A\). Since there are \(4\) more elements left, we can construct another \(3\) element subset of those, say \(B\). Now since \(A\) and \(B\) are disjoint, and both are of size \(3\), we can get some set of size \(4\). What I've observed from this process is that when \(|A| = |B|\), it is at that point that it is optimal to do this operation. </p>
+<p>Okay wait, this <i>is</i> just induction, isn't it? We know that we can construct a set of size \(k + 1\) if \(n > k(k+1)/2\), so if \(n > (k+1)(k+2)/2\), we can still construct our \(k+1\) element set \(A\), and then 
+\[\frac{(k+1)(k+2)}{2} - (k + 1) = \frac{k(k+1)}{2}\]
+So we can take these \(> k(k+1)/2\) elements and construct another, disjoint to \(A\) subset \(B\) with \(k + 1\) elements, and performing the operation gives a subset of size \(k + 2\).</p>
+<p>Now to show that when \(n = k(k+1)/2\), then it is possible that nothing has \(> k\) elements. This reminds me of some weird chain-antichain thing. Surely this is just pattern recognition engineer induct. (spoiler: I can't do it for \(n = 6\))</p>
+</div>
+<br><br>
+<p><a href="../problem_tracker.html">Problem List</a> <a href="../index.html">Home</a></p>
+</body>
+</html>

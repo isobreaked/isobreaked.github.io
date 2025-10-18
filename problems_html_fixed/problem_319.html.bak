@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 319</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 319 - 1987 USAMO, P3 of 6</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Construct a set \(S\) of polynomials inductively by the rules: 
+<ol><li>\(x\in S\);</li><li>if \(f(x)\in S\), then \(xf(x)\in S\) and \(x+(1-x)f(x)\in S\).</li></ol> 
+Prove that there are no two distinct polynomials in \(S\) whose graphs intersect within the region \(\{0 < x < 1\}\).</p>
+<h2>Thinking</h2>
+<div class='skib'>
+<p>First line of thought: it must be true that every polynomial in the set is strictly greater than or strictly lesser than all <i>some other polynomial</i>s at all values \((0, 1)\), so we might as well try to prove it directly. </p>
+<p>Suppose \(f(x) \in S\). Then \(xf(x) < f(x) \; \forall x \in (0, 1)\). But \(x + (1- x) f(x) > f(x)\) if \(f(x) < 1\) and \(x + (1 -x)f(x) < f(x)\) if \(f(x) > 1\). Wait there's a problem though - if \(f(x) < 1\) then \(f(x) > 1\) for some \(f\) where \(f(\alpha) = 1\) at \(0 < \alpha < 1\), then \(f(x)\) and \(x + (1-x)f(x)\) intersect at \(x = \alpha\). This is bad, so naturally we want to show that \(f(x) < 1\) holds for all \(f \in S\) when \(x \in (0, 1)\). </p>
+<p>Indeed, \(f(x) = x < 1\) for all \(x \in (0,1)\), and for \(f(x) < 1 \; \forall x \in (0, 1)\), we have \(xf(x) < 1\) and \(x + (1 - x)f(x) < 1\). In fact, for all \(f \in S\) it is also true that \(f(0) = 0\) and \(f(1) = 1\). </p>
+<p>In any case, we get \(xf(x) < f(x) < x + (1-x)f(x)\). I think if we were to show that for some two non-intersecting functions \(f\) and \(g\) in \(S\), all of their `children' are also non-intersecting, then we are done. We have to verify that \(x\) doesn't intersect anyone though - \(x = xf(x)\) can clearly not happen, and \(x  = x + (1 - x)f(x)\) also cannot happen. Suppose \(f\) and \(g\) are non-intersecting, then:
+<ol>
+	<li>\(xf(x) = xg(x) \implies f(x) = g(x)\) so not possible.</li>
+	<li>\(g(x) < x + (1 - x)g(x) = xf(x) < f(x)\) is not possible because then \(f(x) = 1 + \epsilon\). We don't even need the bounds. </li>
+	<li>\(x + (1 - x)f(x) = x + (1 - x)g(x) \implies f(x) = g(x)\) so not possible.</li>
+</ol></p>
+</div>
+<h2>Idea</h2>
+<p>There's a lot of productive things one can try - and they literally all lead to the solution. In the end, you only need the fact that \(f\) is between \(0\) and \(1\) when \(x\) is. It seems like in the end, the bound \(xf(x) < f(x) < x + (1-x)f(x)\) is actually counterproductive.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

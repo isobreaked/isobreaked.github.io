@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 463</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 463 - 2015 IMOSL, A1</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Suppose that a sequence \(a_1,a_2,\ldots\) of positive real numbers satisfies \[a_{k+1}\geq\frac{ka_k}{a_k^2+(k-1)}\]for every positive integer \(k\). Prove that \(a_1+a_2+\ldots+a_n\geq n\) for every \(n\geq2\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>
+Here goes nothing (algebraic manipulation, am I right)
+\[\frac{1}{a_{k+1}} \le \frac{a_k^2 + (k-1)}{ka_k} = \frac{a_k}{k} + \frac{k - 1}{ka_k}\]
+\[\frac{1}{a_{k+1}} - \frac{1}{a_k} \le \frac{1}{k} \cdot [a_k - \frac{1}{a_k}]\]
+</p>
+<p> I think maybe something like Cauchy-Schwarz might be useful with all the reciprocals, so I'll just write it down
+\[(a_1 + a_2 + \dots + a_n)[\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n}] \ge n^2\]
+So we would like to show that 
+\[\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n} \le n\]
+</p>
+<p>This is all well and good but I'm really bothered by the \(a_k\) showing up in \(a_k - (1/a_k)\) in the equation that has <i>only</i> reciprocals apart from that. We should try fixing that. Wait, maybe it doesn't need fixing because it's like positive of non-reciprocal and negative of reciprocal which works sort of fine? Let's do some algebra. Oh wait yooo
+\[\frac{k}{a_{k+1}} \le a_k + \frac{k-1}{a_k}\]
+If we make a function \(r/a_{r+1} = b_{r+1}\), then
+\[b_{k+1} \le a_k + b_k\]
+Now the idea is, clearly \(a_{n+1}\) doesn't have to be bigger than \(1\), so we must express <b>it</b> in terms of what we know is bigger than something.
+\[\sum^n_{i=1} a_i \ge b_{n+1} = \frac{n}{a_{n+1}} \implies \sum^{n+1}_{i=1} a_i = a_{n+1} + \sum^n_{i=1} a_i \ge \frac{n}{\sum^n_{i=1} a_i} + \sum^n_{i=1} a_i\]</p>
+Note that this <i>must</i> be true in any case, so we might as well try to look at why. The only thing we know about \(I = \sum^n a_i\) is that it should be \(\ge n\). Is it true that 
+\[I + \frac{n}{I} \ge n + 1 \;\;\;\; \text{if } I \ge n\]
+Oh bruh of course it is. The sum of values with fixed product gets larger as the variables spread apart, and equality is already achieved at \(I = n\), so we're done. </div>
+<h2>Idea</h2>
+<p>Just manipulation. Remember if getting opposite inequality signs what you want to do. Don't mindlessly aim for random inequalities. Look at the equality case.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

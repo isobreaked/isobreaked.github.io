@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1747</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1747 - 2021 IMOSL, G4, G</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(ABCD\) be a quadrilateral inscribed in a circle \(\Omega.\) Let the tangent to \(\Omega\) at \(D\) meet rays \(BA\) and \(BC\) at \(E\) and \(F,\) respectively. A point \(T\) is chosen inside \(\triangle ABC\) so that \(\overline{TE}\parallel\overline{CD}\) and \(\overline{TF}\parallel\overline{AD}.\) Let \(K\ne D\) be a point on segment \(DF\) satisfying \(TD=TK.\) Prove that lines \(AC,DT,\) and \(BK\) are concurrent.</p>
+<h2>Idea</h2>
+<p>The main idea is to again go for the <b>leap of faith</b>, but not get distracted -
+within our limits, we obtain results we can prove and keep the end goal clear. Tunnel
+vision should not develop <i>after</i> taking the leap.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

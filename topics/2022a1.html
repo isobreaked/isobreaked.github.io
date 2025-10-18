@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>2022 A1</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+h2 {font-size : 1.2em; color : #333333;}
+h3 { font-size: 2.2em; }
+#date{
+  color: grey;
+  font-size: 12px;
+}
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+} 
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<div id="header"><h3><a href='../index.html'>Home</a>/2022 IMOSL A1</h3></div>
+<div id="date">2025-09-13</div>
+<p>Let \((a_n)_{n\geq 1}\) be a sequence of positive real numbers with the property that
+\[ (a_{n+1})^2 + a_na_{n+2} \leq a_n + a_{n+2} \]
+for all positive integers \(n\). Show that \(a_{2022}\leq 1\).</p>
+<h2>Thinking</h2>
+<div class = skib>
+<p>We'll rewrite this as
+\[(a_{n+1})^2 + (a_{n+2} - 1)(a_n - 1) \leq 1\]
+If both \(a_n\) and \(a_{n+2}\) are \(\le 1\), then \(a_{n+1} \le 1\). Similarly, if both \(a_n\) and \(a_{n+2}\) are \(\ge 1\) then \(a_{n+1} \le 1\). Oh interesting, we get
+\[(a_{n+2} - 1)(a_n - 1) \leq (1 - a_{n+1})(1 + a_{n+1})\]
+Indeed, as we could have gotten before, if \(a_{n+1} \ge 1\) then exactly one of \(a_n\) and \(a_{n+2}\) must be \(\le 1\). So suppose we have a sequence starting with:
+\[GGL : GGLGGLGGL\dots\]
+\[LGG : LGGLGGLGG\dots\]
+\[GLG : GLGGLGGLG\dots\]
+\[LLL : LLLLLLLLL\dots\]
+So everything possible is periodic every three turns, and we should prove that the sequences \(LGG\) and \(GLG\) are somehow not possible. However, \(LGG\) and \(GLG\) are isomorphic to \(GGL\), just delayed by \(1\) or \(2\). So what's going on? It seems like we must show that everything must be \(\le 1\). <p>
+<p>After some thinking, it seems like looking very locally at what is wrong is not working. So I'll try to add or subtract some conditions (which actually looks nice).
+\[a_{n+1}(a_{n+1} + a_{n+3}) + a_{n+2}(a_{n} + a_{n+2}) \le (a_{n+1} + a_{n+3}) + (a_n + a_{n+2})\]
+Bruh okay so of course \(a_{n+1}\) and \(a_{n+2}\) can't be both \(G\). And since everything with a single \(G\) definitely has adjacent \(G\)s as seen above, we are done.</p>
+</div>
+</body>
+</html>

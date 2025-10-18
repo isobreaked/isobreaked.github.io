@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Smoothing</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+h2 {font-size : 1.2em; color : #333333;}
+h3 { font-size: 2.2em; }
+#date{
+  color: grey;
+  font-size: 12px;
+}
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+} 
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<div id="header"><h3><a href='../index.html'>Home</a>/Smoothing</h3></div>
+<div id="date">2025-09-03</div>
+<p>So we have some inequality in the variables \((x_1, x_2, x_3,\dots, x_n)\) and we are asked to find the minimum or the maximum. Then we look at the equality case - suppose the extreme occurs at \((y_1, y_2, y_3, \dots, y_n)\). We will try to find an operation \(P\) such that
+<ol>
+<li>The inequality \(f(x_1, x_2, \dots, x_n) \ge f(P(x_1, x_2, \dots, x_n))\) holds.</li>
+<li>\(P(x_1, x_2, \dots, x_n)\) preserves conditions regarding \((x_1, x_2, \dots, x_n)\). For example, \(x_1 + x_2 +\dots + x_n = 1\) or \(x_1x_2 \dots x_n = 1\) should be preserved.</li>
+<li>The repeated operation of \(P\) on any initial tuple \((x_1, x_2, \dots, x_n)\) results in \((y_1, y_2, \dots, y_n)\) or <b>similar</b> (since for upto two free variables it is not hard to solve an inequality).</li>
+</ol> </p>
+<h1>1999 China TST</h1>
+For non-negative reals \(x_1\), \(x_2\), \(\dots\), \(x_n\) such that \(x_1 + x_2 + \dots + x_n = 1\), find the maximum of 
+\[\sum_{j=1}^{n} (x_j^4 - x_j^5)\]
+<div class=skib>
+<p>Metagaming, maybe the maximum is at \((1/n, 1/n, \dots 1/n)\) and equal to \((n-1)/n^4\). But this is very far from true! Consider the case \((1/2, 1/2, 0, 0, \dots, 0)\), where \(1/16\) is achieved, far bigger than \((n-1)/n^4\). </p>
+<p>But there is a problem. The maximum value for \(n=2\) does not occur for \((1/2, 1/2)\) but for \((\frac{3 - \sqrt{3}}{6}, \frac{3 + \sqrt{3}}{6})\), and the value is \(1/12\). Surely the only possibility now is that the maximum for \(n\) happens at \((\frac{3 - \sqrt{3}}{6}, \frac{3 + \sqrt{3}}{6}, 0, \dots, 0)\), right?</p>
+<p>The only way we get \(0\) through smoothing is by replacing \((x, y) \to (x +y, 0)\). So take some \(x\), \(y\) (nonzero) - we want 
+\[(x + y)^4 - (x + y)^5 \ge x^4 + y^4 - x^5 - y^5 \]
+\[(x + y)^4 - x^4 - y^4 \ge (x + y)^5 - x^5 - y^5 \implies 2(2x^2+3xy+2y^2) \ge 5(x+y)(x^2+xy+y^2)\]
+\[x + y \le \frac{2(2x^2+3xy+2y^2)}{5(x^2+xy+y^2)} = \frac{4}{5} + \frac{2xy}{5x^2+5xy+5y^2} \]
+We cannot increase the RHS after \(4/5\) since the additional term can be arbitrarily close to \(0\) I think. So we get that if \(x + y \le 4/5\), then we can do this merging. But now notice that for any three \(x\), \(y\), \(z\) such that \(x + y + z \le 1\) and all three pairs satisfy \(x + y \ge 4/5\), \(y + z \ge 4/5\), \(z + x \ge 4/5\), then their sum becomes \(\ge 12/5\), which is a contradiction since \(2(x+y+z) \le 2\).</p>
+<p>This means that we can perform the operation up till when there are \(2\) nonzero terms. At that point we already know that the maximum is obtained by \((\frac{3 - \sqrt{3}}{6}, \frac{3 + \sqrt{3}}{6})\), so we are done - the maximum is \(1/12\) for all \(n \ge 2\). </p>
+</div>
+</body>
+</html>

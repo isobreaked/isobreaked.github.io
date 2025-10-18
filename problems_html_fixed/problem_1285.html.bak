@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1285</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1285 - 2022 IMO, P4 of 6, G</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Let \(ABCDE\) be a convex pentagon such that \(BC=DE\). Assume that there is a point \(T\) inside \(ABCDE\) with \(TB=TD,TC=TE\) and \(\angle ABT = \angle TEA\). Let line \(AB\) intersect lines \(CD\) and \(CT\) at points \(P\) and \(Q\), respectively. Assume that the points \(P,B,A,Q\) occur on their line in that order. Let line \(AE\) intersect \(CD\) and \(DT\) at points \(R\) and \(S\), respectively. Assume that the points \(R,E,A,S\) occur on their line in that order. Prove that the points \(P,S,Q,R\) lie on a circle.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

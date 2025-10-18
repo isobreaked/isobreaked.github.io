@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2259</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2259 - 2024 Malaysia TST, P4 of 6</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Zscoder has an simple undirected graph \(G\) with \(n\ge 3\) vertices. Navi labels a positive integer to each vertex, and places a token at one of the vertex. This vertex is now marked red. In each turn, Zscoder plays with following rule:</p>
+<p>\(\bullet\) If the token is currently at vertex \(v\) with label \(t\), then he can move the token along the edges in \(G\) (possibly repeating some edges) exactly \(t\) times. After these \(t\) moves, he marks the current vertex red where the token is at if it is unmarked, or does nothing otherwise, then finishes the turn.</p>
+<p>Zscoder claims that he can mark all vertices in \(G\) red after finite number of turns, regardless of Navi's labels and starting vertex. What is the minimum number of edges must \(G\) have, in terms of \(n\)?</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Okay, so we have to find a graph with minimum edges that works and prove that nothing of smaller 'size' works. Note that a tree (\(n -1 \) edges) clearly does not work since we can assign \(2\) to the starting vertex and everything at an even distance from it. Basically, the idea of 'even distance' should not exist, that is, the graph must not be bipartite (must have an odd cycle).</p>
+<p>Indeed, for \(n = 3\), the only graph that works is \(C_3\). Interestingly, for \(n = 4\), a \(3\)-cycle adjoined with an edge for the fourth vertex does not work - suppose the graph is \((uvw) - x\) and \(w\) has \(2\), \(u\) and \(v\) have \(1\). Then if we start somewhere inside the \(3\)-cycle, then we can never get to \(x\). But if there is an edge \(v - x\) as well, then we're all good. </p>
+<p>Does \(C_n\) just work for odd \(n\)? No, it doesn't - you can have 2 consecutive \(1\)s and everything else a \(2\). Also, if the graph has a leaf, and the preleaf of this leaf has degree 2, then the leaf can be assigned \(2\), the other neighbour of the preleaf can be assigned a \(2\), and everything else can be assigned a \(1\), thus preventing access to the preleaf.</p>
+<p>Let us look at \(n = 5\). I tried a lot of cases but \(f(5) = 5\) seems impossible. \(f(5) = 6\) is easy to get though - take a triangle \((abc)\) and a triangle \((cde)\). It seems triangles are goated, because as we have already seen, you can go anywhere regardless of what parity the numbers on the vertices are (\(C_3\) is the only odd cycle that works standalone). So in fact, we have an upper bound on \(f(2n + 1)\): the graph \(OA_1B_1A_2B_2 \dots A_nB_n\), where we have only the triangles \((OA_1B_1)\), \((OA_2B_2)\), \(\dots\), \((OA_nB_n)\). The bound is thus \(f(2n + 1) \le 3n\). Also, for even numbers, by adding a vertex \(v\) to the odd graph and attaching it to, say, \(O\) and \(A_1\) (forming a triangle once again), we get the bound \(f(2n) \le 3n - 1\).</p>
+<p>I reckon due to small cases that this might be the correct bound. After all, it is linear, and the only better bound would have constant deviation - which is not true, due to small cases. Actually wait - is it true that if two vertices are more than distance \(2\) away, then they can be made unreachable from each other? It is untrue if there is a triangle between \(v\) and some two pre-vertices of \(v\) in the many paths from \(u\) to \(v\). This is because we can assign a \(2\) to every single pre-vertex of \(v\), and \(1\) to everyone else in any path. Wait, so every vertex must be in a triangle because - and never mind the distance \(2\) thing - if a pre-vertex is also distance \(2\) away in some other path, then there is a clear triangle with \(v\), and if not, then some two pre-vertices must be connected, forming a triangle with \(v\). </p>
+<p>Thus every vertex is in a triangle, and the resulting graph must be connected. Interestingly, we obtain a better bound for \(n = 3k\) - \(f(3k) \le 4k -1\). This is achieved when we just connect distinct vertex triangles with edges. This also results in bounds of the same magnitude for \(3k + 1\) and \(3k + 2\): \(f(3k + 1) \le 4k + 1\) and \(f(3k + 2) \le 4k + 2\). Note the 3 different types of triangle creation: 
+<ul>
+<li> disjoint attachement, \(3v\) at the cost \(4e\)</li>
+<li> common edge, \(1v\) at the cost \(2e\)</li>
+<li> common vertex, \(2v\) at the cost \(3e\)</li>
+</ul>
+Clearly, the first option is the best economically, and the rest is small details, so we are done.
+</p>
+</div>
+<h2>Idea</h2>
+<p>Nice - straightforward. A pattern I noticed here is to rule out what <i>doesn't</i> work, rather than figure out what <i>does work</i>. It's just trying out random ideas and seeing what is implied by their failure or what results are obtained along the way.</p> 
+<p>Triangles just give a great construction, so we love triangles. When bipartiteness or non-bipartiteness is in the picture, the most simple thing you can think about are triangles. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

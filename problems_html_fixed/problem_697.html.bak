@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 697</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 697 - 2015 EGMO, P3 of 6, N</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Let \(n, m\) be integers greater than \(1,\) and let \(a_{1}, a_{2}, \ldots, a_{m}\) be positive integers not greater than \(n^{m}\). Prove that there exist positive integers \(b_{1}, b_{2}, \ldots, b_{m}\) not greater than \(n\), such that
+\[\gcd\left(a_{1}+b_{1}, a_{2}+b_{2}, \ldots, a_{m}+b_{m}\right) < n\]
+where \(\gcd\left(x_{1}, x_{2}, \ldots, x_{m}\right)\) denotes the greatest common divisor of \(x_{1}, x_{2}, \ldots, x_{m}\).</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

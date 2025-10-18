@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1600</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1600 - 2023 Dutch TST day 1, P3 of 4, N</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Find all positive integers \(n\) such that there exist \(n\) distinct positive integers, none of which greater than \(n^2\), so that the sum \[\frac{1}{a_1} + \frac{1}{a_2} + \dots + \frac{1}{a_n} = 1.\]</p>
+<h2>Thinking</h2>
+<div class = 'skib'>
+<p>Thinking about primes. Suppose we have the triple \(2, a, b\) that works. Then \(2ab \mid 2a + 2b + ab \). So \(2 \mid a\) or \(2 \mid b\) must hold, suppose \(a = 2a'\). Then \(4a'b \mid 4a' + 2b + 2a'b\), which means \(2a'b \mid 2a' + b + a'b\). So we don't really get anything about \(2\)-divisibility apart from that at least one other number must be divisible by it. </p>
+<p>Suppose the tuple \(2,a,b,c\) works. Then \(2abc \mid 2ab + 2bc + 2ca + abc\). Suppose \(a = 2a'\). Then \(2a'bc \mid 2a'b + bc + 2ca' + a'bc\). </p>
+</div>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

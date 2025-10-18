@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2286</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2286 - Twitch Lemma</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Prove that if a tournament has no directed cycles of length \(n \ge 3\), it does not have any directed cycles of length \(n+1\) either.</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Let us take the contrapositive: if there is a directed cycle of length \(n + 1\), then prove that there is a directed cycle of length \(n\) as well. Suppose our \(n + 1\)-cycle has vertices \(v_1 \to v_2  \to \dots \to v_{n+1} \to v_1\). Now, note that if there is any edge \(v_i \to v_{i+2}\), then there is an \(n\)-cycle (\(v_{i+2} \to v_{i+3} \to \dots \to v_i \to v_{i+2}\)), so for all \(i\), \(v_{i+2} \to v_i\). </p>
+<p>After half an hour of silly error, I understand it now. Only having this much information and bashing cases will not suffice, upon checking \(n + 1 = 6\). Actually, we can do \(n \equiv 1 \pmod{3}\) like this, orienting the sides in the negative direction:
+\[1 \to 3 \to 2 \to 4 \to 6 \to 5 \to 7 \to \dots \to 3k - 3 \to 3k - 4 \to 3k - 2 \to 1\]
+So \(n + 1 \equiv 2 \pmod{3}\) (since \(3k - 1\) is the last vertex, and the only vertex missed), and \(n \equiv 1 \pmod{3}\). Now, using a similar path to above, we get that all \(3\)-length diagonals in \(n + 1 \equiv 1 \pmod{3}\) must be in the same orientation as the sides, and all \(4\)-length diagonals in \(n + 1 \equiv 0 \pmod{3}\) must be in the same orientation as the sides. </p>
+<p>Take the case of \(n + 1 \equiv 1 \pmod{3}\), and orient the sides in the positive direction:
+\[1 \to 4 \to 2 \to 3 \to 6 \to 7 \to \dots \to n + 1 \to 1\]
+so this case is done.</p>
+<p>Finally, take the case of \(n + 1 \equiv 0 \pmod{3}\), orient the sides in the positive direction. The following sequence tells us that \(5\)-length diagonals are all in opposite orientation to the sides:
+\[1 \to 2 \to n + 1 \to 4 \to 5 \to \dots \to n - 1 \sim 3 \to 1\]
+(there being an edge from \(n -1 \to 3 \) would finish). Okay, after some casework on the orientation of the \(3\)-length diagonals - without which it seems impossible to be done - we're still not done. </p>
+<p>Let us abandon our constructive approach. We want an \(n\)-cycle in a tournament on \(n + 1\) vertices with a cycle through all the vertices. Suppose one does not exist. I just realised that we know that a \(3\), \(4\) (through cases on orientation of length-\(3\) diagonals), \(5\), and \(6\) cycle exists. Can we induct and show that an \(n\)-cycle must exist? But how will this use the information that there is an \(n+1\)-cycle?</p>
+<p>Suppose a \(k\)-cycle exists - we will prove that a \(k + 1\)-cycle also exists if a cycle of length \(> k + 1\) exists. FTSOC suppose one a \(k+1\)-cycle does not exist - this means that there's basically the \(k\)-cycle, and a bunch of cones formed above and below the plane of the \(k\)-cycle. Let the cones above signify that the edges are going out of the \(k\)-cycle, and let the cones below signify that the edges are going into the \(k\)-cycle. Now we can try to somehow make use of the \(n + 1\)-cycle.</p>
+<p>Aha! For there to be an \(n+1\)-cycle, and since \(k \le n - 1\), there must necessarily be a non-zero amount of <b>both</b> top cones and bottom cones, since if there are only top cones, then a cycle passing through all the vertices cannot be formed (you can go from the <i>bottom cones</i> region to the <i>cycle plane</i>, but not back). Also since we want to go 'back', we must have some edge from the <i>top cones</i> region to the <i>bottom cones</i> region. Suppose this edge is \(u - v\). Then we have the following \(k + 1\)-cycle:
+\[v \to c_1 \to c_2 \to \dots \to c_{k-1} \to u \to v\]</p>
+</div>
+<h2>Idea</h2>
+<p>Painful explicit construction is not the only way to show existence - remember indirect methods exist, and swap tech when feeling like you've tried for a construction hard enough. Constructions will lead you on since you will solve some cases, but don't tunnel vision. </p>
+<p>The Redei's theorem idea seems to be very powerful (hence demanding an entire section in <i>Existence</i> - Pranav Sriram). Interestingly, looking at it now, <i>Existence</i> - Pranav Sriram actually highlights a lot of the ideas really neatly. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

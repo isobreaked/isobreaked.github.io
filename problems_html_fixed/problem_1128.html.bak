@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1128</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1128 - 2015 Serbia TST, P3</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>There are 2015 prisoners each with a hat coloured in one of 5 colours. 
+One day, the guards order all of the prisoners to line up. The prisoners do so, and each prisoner can see the hats of all prisoners behind and ahead of them in the line.</p>
+<p>A guard asks the prisoners one by one `do you know the colour of your hat?’. If the prisoner says <i>no</i>, they are killed. If they say <i>yes</i>, they are then asked to say the colour of their hat. If they answer correctly, they are set free, and otherwise they are killed.</p>
+<p>Each of the prisoners can hear whether another prisoner said <i>yes</i> or <i>no</i> and can see whether the prisoner was killed, but they cannot hear the colour guessed if the prisoner had answered <i>yes</i>.</p>
+<p>All of the prisoners are perfectly logical and altruistic, and they are able to think of a strategy before they line up. What is the largest number of prisoners we can guarantee survive?</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

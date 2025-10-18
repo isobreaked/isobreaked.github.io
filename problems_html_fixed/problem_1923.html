@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1923</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1923 - 2020 HMMT Team P9 of 10, N</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(p > 5\) be a prime number. Show that there exists a prime number \(q < p\) and a positive integer \(n\) such that \(p\) divides \(n^2-q\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Okay, so we basically want to show that there exists some prime \(< p\) that is a QR mod \(p\). Suppose FTSOC that there doesn't. Then note that the sum of the exponents of primes in the factorization of \(p + 1\), which is a QR, must be even, since all the primes there are \(< p\), and thus, NQRs. Similarly, the sum of exponents in the factorization of \(p + 4\), \(p + 6\), \(p+9\), etc. \( < 2p\) must be even (unless they are prime). I'm trying to think of a counting-esque way (since there are \((p-1)/2\) QRs and NQRs) to disprove this but it doesn't seem to be very straightforward, since products of two distinct prime products can be equal. </p>
+<p>Here I took a hint after being stuck for a bit: quadratic reciprocity (which means it was just a tech skill issue on my part). Quadratic reciprocity kills the problem, since it says that for an odd prime \(q < p\), \(p\) is an NQR if and only if
+\[(-1)^{(p-1)(q-1)/4} = 1\]
+So we can now divide into \(2\) cases: \(p \equiv 1 \pmod{4}\) and \(p \equiv 3 \pmod{4}\).</p>
+<p>When \(p \equiv 1 \pmod{4}\), then \(p\) is an NQR for all odd primes \(q < p\). Now looking at \(p - 1\), if an odd prime divides it, then \(p\) is a QR modulo that prime, so \(p = 2^n + 1\), which means \(p = 2^{2^m} + 1\). But now \(2\) is a quadratic residue modulo \(p\) since
+\[2^{2^{2^m - 1}} \equiv 1 \pmod{2^{2^m} + 1}\]
+which is a contradiction.</p>
+<p>Now suppose \(p \equiv 3 \pmod{4}\), in which case \(p\) is an NQR for all primes \(q \equiv 1 \pmod{4}\) and a QR for all primes \(q \equiv 3 \pmod{4}\). We could look at \(p - 1\) and say things about the \(3 \pmod{4}\) factors, but instead of dealing with the factors of \(2\), let's just look at \(p - 6\). Since \(6 = 2\times 3\) is a QR mod \(p\), the only primes that divide it must be \(3 \pmod{4}\) primes. Since \(p - 6 \equiv 3 - 6 \equiv 1 \pmod{4}\), there must be an even number of primes dividing \(p - 6\). However, since all these primes are NQRs mod \(p\), we obtain that \(p - 6\) is a QR mod \(p\). But since \(p \equiv 3 \pmod{4}\) where \(-1\) is an NQR,
+\[p - 6 \equiv -6 \equiv 2 \times 3 \times (-1) = \text{NQR} \times \text{NQR} \times \text{NQR} = \text{NQR}\] 
+which is a contradiction.</p>
+</div>
+<h2>Idea</h2>
+<p>Everything after using quadratic reciprocity is just spam. So I will cope by saying I had to take the hint because I'm just not familiar with the QRL tech. In any case, my earlier approaches were bound to fail anyways since a multiplicative counting bound and going above \(p\) are all very unreliable things. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

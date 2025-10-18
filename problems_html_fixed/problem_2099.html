@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2099</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2099 - 2025 USA TST, P3 of 6, G</h1>
+<h2 class='difficulty'>Difficulty: 9</h2>
+<p>Let \(A_1A_2\dotsm A_{2025}\) be a convex 2025-gon, and let \(A_i = A_{i+2025}\) for all integers \(i\). Distinct points \(P\) and \(Q\) lie in its interior such that \(\angle A_{i-1}A_iP = \angle QA_iA_{i+1}\) for all \(i\).  Define points \(P^j_i\) and \(Q^j_i\) for integers \(i\) and positive integers \(j\) as follows:
+<ul><li>For all \(i\), \(P^1_i = Q^1_i = A_i\).</li><li>For all \(i\) and \(j\), \(P^{j+1}_i\) and \(Q^{j+1}_i\) are the circumcenters of \(PP^j_iP^j_{i+1}\) and \(QQ^j_iQ^j_{i+1}\), respectively.</li></ul>
+Let \(\mathcal{P}\) and \(\mathcal{Q}\) be the polygons \(P^{2025}_1P^{2025}_2\dotsm P^{2025}_{2025}\) and \(Q^{2025}_1Q^{2025}_2\dotsm Q^{2025}_{2025}\), respectively.
+<ol><li>Prove that \(\mathcal{P}\) and \(\mathcal{Q}\) are cyclic.</li><li>Let \(O_P\) and \(O_Q\) be the circumcenters of \(\mathcal{P}\) and \(\mathcal{Q}\), respectively. Assuming that \(O_P\neq O_Q\), show that \(O_PO_Q\) is parallel to \(PQ\).</li></ol></p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

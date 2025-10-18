@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 824</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 824 - 2020 ASC, P5 of 5</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(\mathbb{R}^{+}\) be the set of positive real numbers. Determine all functions \(f: \mathbb{R}^{+} \rightarrow \mathbb{R}^{+}\) such that \[f\left(x^{f(y)}\right)=f(x)^{y}\] for all positive real numbers \(x\) and \(y\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Interesting. Basically we are moving the \(y\) inside the bracket with an \(f\) appended each time. 
+\[f(f(x))^y = f(f(x)^{f(y)}) = f(f(x^{f(f(y))}))\]
+Also
+\[f(x) = f(x^{f(1)})\]
+But \(f\) is injective or constant (\(f \equiv 1\)), since if nonconstant then \(P(x, a)\), \(P(x, b)\) gives \(a = b\) if \(f(a) = f(b)\). Thus, \(f(1) = 1\). In hindsight, we can just use \(x \to 1\) to get \(f(1) = 1\) but at least we saw injectivity here.</p>
+<p>There are a few things I'll write down
+\[f(x^{f(y)}) f(x^{f(z)}) = f(x)^y f(x)^z = f(x^{f(y+z)})\]
+\[f(x^{f(1/2)})^2 = f(x) \implies f(2)f(1/2) = 1, \;\;\;\;\;\;\;\; f(x)f(1/x) = 1\]
+\[f(x^{f(1/2)})^2 = f(x) = f(x^{f(1/4)})^4 \implies f(x^{f(1/2)}) = f(x^{f(1/4)})^2 \implies f(2)f(1/4) = f(1/2)\]
+This is huge. In general we get
+\[f(x^{f(y)})^{1/y} = f(x) = f(x^{f(z)})^{1/z} \implies f(x^{f(y)}) = f(x^{f(z)})^{y/z} \implies f(y) = f(z)f(y/z)\]
+So \(f\) is <b>multiplicative</b>. Since we have assumed that \(f\) is nonconstant, suppose \(f(x) > 1\) and \(f(1/x) < 1\). Varying \(y\) in the main equation (with \(x\) as \(x\) and \(1/x\) as \(x\)) gives surjectivity (and thus <b>bijectivity</b>). So suppose for some natural \(n\), \(f(n') = n\). Then we get \(f(x^n) = f(x)^{n'}\) which means \(n' = n\). So we have \(f(x) = x\) for all rationals.</p>
+<p>Note that if for all \(x > 1\), we have \(f(x) > 1\), then this would be enough to finish - we would obtain \(f(y) > f(z)\) for all \(y > z\), which due to rationals being dense in reals would finish. Suppose there exists an \(x > 1\) such that \(f(x) > 1\). This would mean that 
+\[f(x^{f(y)}) = f(x)^y > 1\]
+But since \(f\) is surjective, \(x^{f(y)}\) will cover every real \(> 1\). Thus the existence of a singular \(x > 1\) such that \(f(x) > 1\) would complete our solution - the opposite side follows since \(1/f(x) = f(1/x)\). But now suppose for all \(x > 1\), we have \(f(x) < 1\), and as a corollary, for all \(x < 1\) we have \(f(x) > 1\). This is very clearly absurd because we have already shown that \(f(n) = n\) for all rationals. Thus our functions are \(\boxed{f(x) = x} \;\; \forall x \in \mathbb{R}^+\) and \(\boxed{f(x) = 1} \;\; \forall x \in \mathbb{R}^+\), which do work.</p>
+</div>
+<h2>Idea</h2>
+<p>Reoccurence of 'double counting' variations in functional equations is very interesting. Multiplicativity plus monotonicity finishinng due to rational denseness is great. Overall not too hard, but a lot of ideas well put together.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

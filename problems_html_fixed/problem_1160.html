@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1160</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1160 - 2022 ARMO Grade 9 P4 of 8</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>A group of parents wish to make a cake for \(18\) children. To do this, they first asked each child the area of the piece they want. After that, they produced a square-shaped cake, the area of which is exactly equal to the sum of \(18\) desired areas. However, when the children saw the cake, they wanted their pieces to be squares too. The parents cut the cake with using cuts parallel to the sides of the cake (the cuts do not have to start or end at the side of the cake). What is the maximum \(k\) for which the parents are guaranteed to be able to cut out \(k\) square pieces from the cake which can then be distributed to the satisfaction of \(k\) of the children?</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>I just had an idea spawn in my head - divide the big square (area \(T^2\)) into \(9\) square pieces. Then note that there cannot be \(> 9\) pieces of area \(\ge T^2/9\), which means there are \(\ge 9\) pieces of area \(\le T^2/9\), and we can fit these into the \(9\) subdivisions. Thus \(k \ge 9\). Note that we can have \(3\) pieces of area \(\ge T^2/4\) though, so \(k < 17\).</p>
+<p>Oh! Note that if there are \(8\) children who want a size \(> T^2/9\), then at most \(4\) of them can be satisfied, since no more than \(4\) square pieces of size \(> T^2/9\) can be cut out. Thus \(k \le 14\). Wait, similarly if there are \(15\) children who want a size \(\ge T^2/16\), then at most \(9\) of them can be satisfied, since no more than \(9\) square pieces of size \(> T^2/16\) can be cut out. Thus \(k \le 12\). </p>
+<p>I want to show you can satisfy \(10\) people but it seems like we have to do some algebra stuff and it won't just work combinatorially. Note that if we take the \(10\) children who asked for the smallest pieces, all of their asks must be \(< T/9\) (even the 10th one, because otherwise, the largest 9 kids exceed the cake). Let the sides of the wanted areas be 
+\[x_1 > x_2 > \dots > x_{17} > x_{18}\]
+\[x_1^2 + x_2^2 + \dots + x_{18}^2 = T^2\]
+So we want to make the squares with sides \(x_9\) to \(x_{18}\) on the cake. You want to put \(x_9\) on a corner. Wait if \(x_{15} + x_{16} + x_{17} + x_{18} \le T\) then we can just put the squares in a \(3 - 3 - 4\) arrangement. Assume not, and note that this means \(x_{15} > T/4\) (equality kills), and if \(x_{15} = e + T/4\), then 
+\[\sum_{i=1}^{15} x_i^2 \ge 15 \left( e + \frac{T}{4} \right)^2 = 15e^2 + \frac{15eT}{2} + \frac{15T^2}{16}\]
+\[x_{16} + x_{17} + x_{18} \ge \frac{3T}{4} - e, \;\;\;\; x_{16}^2 + x_{17}^2 + x_{18}^2 \le \frac{T^2}{16} - 15e^2 - \frac{15eT}{2}\]
+But by Cauchy-Schwarz
+\[\frac{T^2}{16} - 15e^2 - \frac{15eT}{2} \ge x_{16}^2 + x_{17}^2 + x_{18}^2 \ge \frac{(x_{16} + x_{17} + x_{18})^2}{3} \ge \frac{3T^2}{16} + \frac{e^2}{3} - \frac{eT}{2} \]
+which is a contradiction. So \(10 \le k \le 12\).</p>
+<p>I suppose the natural thing to do here is to try and show \(11\) is doable with a \(3 - 4 - 4\) arrangement but it seems much less possible. Also, here we have to put \(x_8\) to \(x_{18}\) on the cake. Suppose \(x_8 \ge T/3\). Then, after placing \(x_8\) in the top left corner and designating it the space of \(4\) \(T^2/9\) area cells, we are left with \(5\) \(T^2/9\) area cells for \(10\) blocks summing up to at most \(T^2/9\) in area. In a set of four blocks, if none of them is bigger than \(T^2/36\) in area, then we can put all 4 in a \(T^2/9\) block, at the corners. Now suppose there are \(3\) blocks (the maximum possible) that are bigger than \(T^2/36\) - we can designate to them a full \(T^2/9\) block, then we have \(2\) \(T^2/9\) blocks left, and only \(7\) blocks of area lesser than \(T^2/36\), so we are fine (we can even place \(8\) blocks).</p>
+<p>So we are still on the \(k = 11\) case, but \(x_8 \le T/3\). Our goal is a \(4 - 4 - 3\) arrangement. We know that \(x_{15} + x_{16} + x_{17} + x_{18} > T\) is impossible. But is \(x_{11} + x_{12} + x_{13} + x_{14} > T\) impossible as well? Well, at least not by the same logic - majorly because \(x_{15}\) to \(x_{18}\) can just be \(\sim 0\). So this inspires a combination of things. What about \(x_{11} + x_{13} + x_{15} + x_{17}\)? We choose this because it's naturally bigger than \(x_{12} + x_{14} + x_{16} + x_{18}\). Suppose not, this means \(x_{11} = e + T/4\),
+\[\sum_{i=1}^{11} x_i^2 \ge 11\left(e + \frac{T}{4}\right)^2 = 11e^2 + \frac{11eT}{2} + \frac{11T^2}{16}\]
+\[x_{12} + x_{13} + x_{14} + x_{15} + x_{16} + x_{17} \ge \frac{3T}{2} - 2e, \;\;\;\; x_{12}^2 + x_{13}^2 + x_{14}^2 + x_{15}^2 + x_{16}^2 + x_{17}^2 \le \frac{5T^2}{16} - 11e^2 - \frac{11eT}{2}\]
+And again by Cauchy-Schwarz,
+\[\frac{5T^2}{16} - 11e^2 - \frac{11eT}{2} \ge x_{12}^2 + x_{13}^2 + x_{14}^2 + x_{15}^2 + x_{16}^2 + x_{17}^2 \ge \frac{(x_{12} + x_{13} + x_{14} + x_{15} + x_{16} + x_{17})^2}{6} \ge \frac{6T^2}{16} + \frac{2e^2}{3} - \frac{eT}{2}\]
+which is a contradiction! Yay! So \(x_{11} + x_{13} + x_{15} + x_{17} \le T\), which means \(x_{12} + x_{14} + x_{16} + x_{18} \le T\), so we obtain \(11 \le k \le 12\).</p>
+<p>I sure do hope the same sort of thing works out for \(k = 12\) as well. We want a \(4 - 4 - 4\) this time, and we know the idea - take a sequence that 'majorizes' the other two sequences but goes 'through them' as well. But before that, what if \(x_8\) and \(x_7\) are bigger than \(T/3\). First let us get the case where only \(x_7 > T/3\) out of the way - this is basically the same as the \(k = 11\) case where we said 'we can even place \(8\) blocks'. Now, if both are bigger than \(T/3\), note that \(x_8\) and \(x_7\) are \(< 0.4T\). So we let them be in a block of size \(0.8T \times 0.4T\). We are left with \(10\) blocks that have a total size of \(T^2/9\). Now divide the remaining grid into \(0.2T \times 0.2T\) squares. These have an area of \(0.36T^2/9\), which means there can be at most \(2\) things that are bigger than this out of the \(10\) pieces totalling to \(T^2/9\). Fit both of them in \(0.4T \times 0.4T\) blocks (far bigger than needed). This <i>still leaves</i> \(9\) \(0.2T \times 0.2T\) sized blocks, and we need only \(8\). </p>
+<p>Okay great. Now we know that everything is \(< T/3\). The sensible sequences by pattern following are \((x_7, x_{10}, x_{13}, x_{16})\), \((x_8, x_{11}, x_{14}, x_{17})\), and \((x_9, x_{12}, x_{15}, x_{18})\). Suppose \(x_7 + x_{10} + x_{13} + x_{16} > T\). This means \(x_7 = e + T/4\), and
+\[\sum_{i=1}^{7} x_i^2 \ge 7\left(e + \frac{T}{4}\right)^2 = 7e^2 + \frac{7eT}{2} + \frac{7T^2}{16}\]
+\[\sum_{j=8}^{16} x_j \ge \frac{9T}{4} - 3e, \;\;\;\; \sum_{j= 8}^{16} x_{j}^2 \le \frac{9T^2}{16} - 9e^2 - \frac{9eT}{2}\]
+And for the last time, by Cauchy-Schwarz,
+\[\frac{9T^2}{16} - 9e^2 - \frac{9eT}{2} \ge  \sum_{j= 8}^{16} x_{j}^2 \ge \frac{(\sum_{j=8}^{16} x_j)^2}{9} \ge \frac{9T^2}{16} + e^2 - \frac{3eT}{2}\]
+which is a contradiction (we don't care about equality). Thus, all of the sequences are lesser than \(T\), and we're set. The answer is \(k = 12\). 
+</p>
+</div>
+<h2>Idea</h2>
+<p>Just do it for the combinatorial part, but also note that Cauchy-Schwarz is just a thing with the algebraic tech for square-on-square combi.</p>
+<p>Common (?) theme where one part of bound is combinatorial and other is algebraic.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

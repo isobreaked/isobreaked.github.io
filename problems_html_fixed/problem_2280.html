@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2280</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2280 - 2025 China Mathematical Olympiad, P5 of 6, N</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(p\) be a prime number and \(f\) be a bijection from \(\left\{0,1,\ldots,p-1\right\}\) to itself. Suppose that for integers \(a,b \in \left\{0,1,\ldots,p-1\right\}\), \(|f(a) - f(b)|\leqslant 2024\) if \(p \mid a^2 - b\). Prove that there exists infinite many \(p\) such that there exists such an \(f\) and there also exists infinite many \(p\) such that there doesn't exist such an \(f\).</p>
+
+<h2>Thinking</h2>
+<div class=skib>
+<p>Draw an arrow from \(a \to b\) if \(a^2 \equiv b\). Whenever we have an arrow drawn, this means that \(f(a)\) and \(f(b)\) are at most \(2024\) away. Suppose \(a\) lies in a cycle of length \(k\). This means that 
+\[a^{2^k} \equiv a \implies a^{2^k - 1} \equiv 1 \pmod{p}\]
+I swear if there is some Zsigmondy or something with \(2^{\alpha} - 1\) I will actually laugh out loud. In any case, we have \(x_i \mid \gcd(2^k - 1, p - 1)\) where \(x_i\) is the order of the \(i\)th element in the \(k\)-cycle. Cycles are interesting to look at and see what happens to \(f\). Suppose \(i < j\) and there are at least \(k/2\) elements in between them - that is, \(j = i + (k/2) + e\). Then \(|f(j) - f(i)| \le 2024(e - (k/2))\) since that's the other distance between them in the cycle. </p>
+<p>Also, looking again at the structure of the graph, if we have a cycle, then since we're working modulo \(p\) and everything has an indegree of \(0\) or \(2\) (with the exception of \(0\), that is), our \(k\)-cycle will have \(k\) arrows going into it, one at each vertex, and these arrows will be coming in from the negations modulo \(p\) of the cycle (if \(a_i^2 = a_{i+1}\) are the vertices in the cycle, then \(-a_i\) is the one pointing to \(a_{i+1}\) from outside). Another thing to note is that the number of vertices with indegree \(0\) is \((p - 1)/2\), the number of vertices with indegree \(2\) is also \((p-1)/2\) (QRs). Furthermore, if \(-1\) is not a quadratic residue (which occurs for \(3 \pmod{4}\) primes), then apart from \(-1\), everything must lead into or be part of a cycle. </p>
+<p>Wait - consider for now the \(3 \pmod{4}\) primes, and notice that a \(k\)-cycle must have these \(k\) neighbours necessarily. If any the chains leading into a \(k\)-cycle are longer than they are now, this would mean \(-\text{QR} = \text{QR}\), or \(-1 = \text{QR}\), which is not true. Thus, the structure of the graph is just cycles and singular point chains leading into them (with the exception of \(-1 \to 1\) and \(0\)). Thus for \(p \equiv 3 \pmod{4}\), we must have a structure of multiple coronavirus-like things. However, for \(p \equiv 1 \pmod{4}\) we have \(-1\) a QR, so there can be a slightly bigger binary-tree-like structure leading into \(-1\) (which does in fact preserve equality of QRs since the leaves are the NQRs) and outside of this tree, coronaviruses exist but the chains leading into them are no longer point chains - they are also binary-like trees. </p>
+<p>Okay nice, so if there's a sufficiently deep binary tree of \(r\) levels, then since the distance from the root to the base vertices is \(r\), their \(f\) values must all be within \(2024r\) of the root. However, there are \(2^r\) base vertices, which is much bigger than \(2024r\) contradicting injectivity of \(f\). A sufficiently big binary tree can be guaranteed. Take a big \(\alpha\), and find \(p\) such that \(p \equiv 1 \pmod{2^{\alpha}}\). Infinitely many such \(p\) are findable due to Dirichlet, and since all \(p\) have a primitive root \(g\), we have the following main binary tree chain:
+\[g \to g^2 \to g^4 \to \dots \to g^{2^{\alpha}}\]
+and since \(g\) is a primitive root, this is indeed a chain. All other chains are obtained from this chain (if there are 2 roots of the equation \(x^2 \equiv a \pmod{p}\), there are also 2 roots of \(x^2 \equiv -a \pmod{p}\)).</p>
+<p>Great! Now we wish to show the other side of the problem, that is, there are infinitely many primes \(p\) such that \(f\) exists. The natural course of action would be to show that the coronaviruses obtained in \(3 \pmod{4}\) primes are actually good. But this is shrimple - assign \(f(0) = 0\), \(f(1) = 1\), \(f(-1) = 2\), and then for a \(k\)-coronavirus, assign \[\{x, x+4, x+8, \dots, x+5, x+1\}\] to the main cycle, with \(x + 4l\) going for \(\lceil k/2\rceil\) steps and \(x+i +2\) to the pokey bit adjacent to \(x + i\) (with the exception of when \(k\) is odd, in which case the pokey bit of \(x + 2k- 2\) is assigned \(x + 2k - 1\)). This ensures that a coronavirus covers everything from \(x\) to \(x+2k-1\), and we can continue this process until everything is covered.  </p>
+</div>
+<h2>Idea</h2>
+<p>Great problem overall. Obviously considering arrows and pictures makes everything so much easier to visualize. The main part is just understanding the structure of the arrows. </p>
+
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

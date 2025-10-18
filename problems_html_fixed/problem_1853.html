@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1853</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1853 - 2024 Israel TST Test 6 P2 of 3</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(n\) be a positive integer. Find all polynomials \(Q(x)\) with integer coefficients and degree less than \(n\) for which there exists an integer \(m\geq 1\) so that
+\[x^n-1\mid Q(x)^m-1\]</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>This means that \(Q(r)\) is an \(m\)-th root of unity where \(r\) is an \(n\)-th root of unity. In fact, as long as all the \(n\)-th roots of unity go to <i>some</i> root of unity under \(Q\), we're good, since there definitely exists some large \(m\) such that all those roots of unity are \(m\)-th roots of unity. We use the \(e^{iq\pi}\) definition of a root of unity, where \(q \in \mathbf{Q}\). Note since \(Q\) is an integer polynomial that \(Q(1)\) must be \(1\) or \(-1\). The main point is to figure out what an integer polynomial <i>can</i> do to the roots of unity. 
+\[a_k(e^{2i \pi / n})^k + a_{k-1}(e^{2i \pi / n})^{k-1} + \dots + a_2(e^{2i \pi / n})^2 + a_1(e^{2i \pi / n}) + a_0 = e^{iq \pi}\]
+\[|a_k| + |a_{k-1}| + \dots + |a_2| + |a_1| + |a_0| \ge |Q(e^{2i\pi / n})| = 1\]
+which is useless. I really want to show somehow that \(a_0 = 0\), but that is just discrimination and has no grounds for being true since \(1\) is also a root of unity. Let's write two of these equations down 
+\[a_k(\omega)^k + a_{k-1}(\omega)^{k-1} + \dots + a_2(\omega)^2 + a_1(\omega) + a_0 = e^{iq_1 \pi}\]
+\[a_k(\omega^2)^k + a_{k-1}(\omega^2)^{k-1} + \dots + a_2(\omega^2)^2 + a_1(\omega^2) + a_0 = e^{iq_2 \pi}\]
+Oh bruh wait we can add all of the equations up
+\[na_0 = \sum_{j=0}^{n-1} e^{iq_j \pi} = \sum Q(\omega^j)\]
+But now using triangle inequality
+\[|na_0| = \left\lvert \sum Q(\omega^j) \right\rvert \le \sum |Q(\omega^j)| = n \]
+So \(a_0 = 0\) unless 
+\[\left\lvert \sum Q(\omega^j) \right\rvert = \sum |Q(\omega^j)|\]
+which is only possible if \(Q(\omega^j) = 1\) for all \(j\) or \(-1\) for all \(j\) (since \(Q(1) = \pm 1\)). This means that unless \(a_0 = 0\), \(Q(x) = 1\) or \(-1\).
+</p>
+<p>Continuing similarly after dividing by \(\omega^j\) for the \(j\)th equation, we get that unless \(a_1 = 0\), \(Q(x) = x\) or \(-x\). In the end we obtain the polynomials:
+\[\{1, -1, x, -x, x^2, -x^2, \dots, x^{n-1}, -x^{n-1}\}\]
+all of which can be seen to work.</p>
+</div>
+<h2>Idea</h2>
+<p>Subtracting \(P(a)\) and \(P(b)\) is kind of dumb most of the time (unless \(a - b \mid P(a) - P(b)\)). Global roots of unity addition is very powerful - after all, ROUF. </p>
+<p>Note that the original idea of wanting to show \(a_0 = 0\) was actually <b>not 'discrimination'</b>, since it is the only term/monomial in \(Q\) that is invariant. Looking at what things are changing and what things are not changing is clearly very useful for insight.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

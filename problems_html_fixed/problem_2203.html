@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2203</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2203 - 2016 RMM, P4 of 6</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(x\) and \(y\) be positive real numbers such that \(x + y^{2016} \ge 1\). Prove that \(x^{2016} + y > 0.99\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Note that if \(y < 0.99\), then \(y^{2016} < 0.0000000025\), which means \(x > 0.9999999\), implying \(x^{2016} > 0.999\). What? Is the point supposed to be computation? I used a calculator already.</p>
+<p>
+I suppose on contest you want to show 
+\[(1 - (0.99)^{2016})^{2016} > 0.99\]
+without a calculator. Use Bernoulli's inequality or whatever they call it to want \(1 - 2016 \cdot 0.99^{2016} > 0.99\), so we want
+\[0.99^{2016} < 0.000005 \iff 99^{2016} < 100^{2013} \cdot 5 = 5 (99^{2013} + 99^{2012} (2013) + 99^{2011} \binom{2013}{2} + \dots + 99^2 \binom{2013}{2011} + 99 \binom{2013}{2012} + 1)\]
+But it is in fact true that 
+\[99^{2016} < 5 \cdot \binom{2013}{7} 99^{2006} \iff 99^{10}  < 5 \cdot \binom{2013}{7} \impliedby 100^{10} \cdot 5040 < 5 \cdot (2000)^7 \iff 10^{20} \cdot 5040 < 5 \cdot 2^7 \cdot 10^{21} \iff 504 < 640\]
+so we are done.
+</p>
+</div>
+<h2>Idea</h2>
+<p>Cope. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

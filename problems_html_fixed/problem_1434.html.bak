@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1434</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1434 - 2023 IZHO P6 of 6, CG</h1>
+<h2 class='difficulty'>Difficulty: 9</h2>
+<p>Several blue and green rectangular napkins (perhaps of different sizes) with vertical and horizontal sides were placed on the plane. It turned out that any two napkins of different colors can be crossed by a vertical or horizontal line (perhaps along the border). Prove that it is possible to choose a color, two horizontal lines and one vertical line, so that each napkin of the chosen color is intersected by at least one of the chosen lines.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

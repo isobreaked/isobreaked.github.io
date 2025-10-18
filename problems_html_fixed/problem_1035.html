@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1035</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1035 - 2010 APMO, P4 of 5, G</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(ABC\) be an acute angled triangle satisfying the conditions \(AB>BC\) and \(AC>BC\). Denote by \(O\) and \(H\) the circumcentre and orthocentre, respectively, of the triangle \(ABC.\) Suppose that the circumcircle of the triangle \(AHC\) intersects the line \(AB\) at \(M\) different from \(A\), and the circumcircle of the triangle \(AHB\) intersects the line \(AC\) at \(N\) different from \(A.\) Prove that the circumcentre of the triangle \(MNH\) lies on the line \(OH\).</p>
+<h2>Idea</h2>
+<p>Inverting is not the best idea here - just a little bit of not-being-stupid gives a
+feasible complex bash (but I couldn’t think of how to characterize \(M\) and \(N\) because
+I was not not-being-stupid, they are just reflections of \(B\) and \(C\) about \(CH\) and \(BH\)).<br><br>
+After inversion, you are forced to use lengths, and I’m proud of mixing the perpendicularity condition with LinPoP - actually, I used LinPoP with respect to circles of fixed radius at \(O\) and \(I\) while solving, namely the circumcircle and incircle, but
+while writing up, I realised that I could just make them point circles if the fixed
+radii would cancel out anyways.<br><br>
+Then you resort to complex bashing in the end anyways because life.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

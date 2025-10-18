@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 705</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 705 - 2013 IMOSL, C3</h1>
+<h2 class='difficulty'>Difficulty: 8</h2>
+<p>A crazy physicist discovered a new kind of particle wich he called an imon, after some of them mysteriously appeared in his lab. Some pairs of imons in the lab can be entangled, and each imon can participate in many entanglement relations. The physicist has found a way to perform the following two kinds of operations with these particles, one operation at a time.
+(i) If some imon is entangled with an odd number of other imons in the lab, then the physicist can destroy it.
+(ii) At any moment, he may double the whole family of imons in the lab by creating a copy \(I'\) of each imon \(I\). During this procedure, the two copies \(I'\) and \(J'\) become entangled if and only if the original imons \(I\) and \(J\) are entangled, and each copy \(I'\) becomes entangled with its original imon \(I\); no other entanglements occur or disappear at this moment.</p>
+<p>Prove that the physicist may apply a sequence of much operations resulting in a family of imons, no two of which are entangled.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

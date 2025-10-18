@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1587</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1587 - 2022 Balkan SL, C3</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Find the largest positive integer \(k{}\) for which there exists a convex polyhedron \(\mathcal{P}\) with 2022 edges, which satisfies the following properties:
+<ol><li>The degrees of the vertices of \(\mathcal{P}\) don’t differ by more than one, and</li><li>It is possible to colour the edges of \(\mathcal{P}\) with \(k{}\) colours such that for every colour \(c{}\), and every pair of vertices \((v_1, v_2)\) of \(\mathcal{P}\), there is a monochromatic path between \(v_1\) and \(v_2\) in the colour \(c{}\).</li></ol></p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

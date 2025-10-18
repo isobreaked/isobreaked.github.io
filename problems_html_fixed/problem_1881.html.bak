@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1881</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1881 - 2019 Israel IMO practice, P1 of 3</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Determine whether it possible to color the positive integers in finitely many colors, so that not all integers are the same color, and so that the following condition holds: If \(a < b\) and \(a\), \(b\) are of different colors, then \(b\), \(a+b\) are of different colors.</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>The problem condition says that for any \(a\), \(b\) with different colors, the Fibonacci-type sequence \(F(a, b)\) has consecutive elements being of different colors. This means that if \(a\), \(b\) are of the same color (and \(b < 2a\)?), then there is a reverse Fibonacci-type sequence \(F'(a, b)\) with all elements of the same color until \(b' > 2a'\). </p>
+<p>Of course, after a sufficiently large \(n\), all numbers must have something of the same color in the interval \((n, 2n)\)... wait, why? Let me be precise. Suppose we can finitely color the integers with \(c\) colors. There must be something with the same color as \(n\) in the interval \((n, n+c)\) unless \(n, n+c\) has some other color repeating. This means we can construct at least one number back in a reverse Fibonacci-type sequence from \(X\), \(Y\) in \([n, n+c]\) if \(n > c\). Constructing this one number back will lead to something in \([1, c]\) being the same color as \(X\), \(Y\).</p>
+<p>Thinking small, if we have two adjacent numbers of the same color \(C_i\), and some other two adjacent numbers of the same color \(C_j\), then \(C_i = C_j\) must hold - this is the color of the number \(1\). Basically if \(x\) and \(x + i\) are the same color for \(x = x_1\) and \(x = x_2\), where \(x_1, x_2 > i\), both of those pairs must be of the same color. </p>
+<p>Note that after \(c\) disjoint intervals of the type \((n,n+c)\), there will be some two of these intervals where the obtained reverse Fibonacci-type sequence has the same difference. Thus, there will be at least four elements in \((n, n+c^2+c-1)\) of the same color. Well, by PHP we could have gotten there are at least \(c+1\) elements of the same color. What's the big deal?</p>
+<p>Where are we supposed to get a contradiction? The reverse Fibonacci-like chains alone aren't enough to get one - for example, they will let a sequence with all but one element \(e\) with color red and \(e\) with color blue <i>pass</i>. We need something stronger. Oh I'm stupid, they won't let it pass because you can get that number as a difference of two reds in some interval \((x, 2x)\). It seems like we still get a contradiction with weirder things but it's not so direct from my line of thinking.</p>
+<p>I really want to get a contradiction for when there's exactly one element of some color over all of the integers. So basically, I want to show that if we have finitely many colors coloring the positive integers, then the set of differences of monochromatic integers is \(\mathbb{N}\) - <i>this alone is untrue for a general coloring so we learn and put in another condition</i> - <b>if</b> no two differences of monochromatic integers are equal for different colors. This seems fairly doable - suppose we want to show that two monochromatic things are adjacent - then note that there are only finitely many pairs of colors, so at some point one of the pairs repeats. For example, \(RG\) repeats after some \(i\) numbers, which would imply that \(R\) is at \(n\) and \(n+i\), and \(G\) is at \(n+1\) and \(n+i+1\) - this is a contradiction to the fact that <i>no two differences of monochromatic integers are equal for different colors</i>. We can do the same thing with some general distance \(k\) instead of distance \(1\), and by the exact same logic, we get that some two things distance \(k\) away are monochromatic. </p>
+<p>Also note that there's not a size issue (remember \(b < 2a\)) in the above argument since we can always just start at some arbitrarily large \(N\) (instead of \(1\)) where size for that particular distance \(k\) is not an issue. </p>
+<p>Wait, I just realised from the above argument that if \(RG\) appears at some index \(m\), then it cannot appear again until after index \(2m\). Basically for \(m\) large we get that the \(\binom{c}{2}\) pairs of distinct colors can each appear only once in \(m, 2m\) and everything else is just one specific color (the same color as \(1\)), say \(C\). But this means that we can basically force everything small (like it's easy to see why \(2\) should also be of color \(C\)) to be \(C\). Taking \(m\) larger and larger, we keep getting that <i>everything</i> is \(C\), a contradiction.</p>
+</div>
+<h2>Idea</h2>
+<p>Peak! Did not expect that ending to be honest. There's a lot of learning from failure here (more like learning from stupidity). Looking at small things - like adjacent things, or simple sequences - seems to be the strat. An interesting idea I don't think we used in the final solution is that \(x, x+c\) is always contained in \((x, dx)\) for sufficiently large \(x\).</p>
+<p>Also I notice that my thinking became much more streamlined (this is not to say a lack of ideas but rather a higher density of better thinking, somehow) <i>after</i> I start thinking directly about where we're supposed to get a contradiction i.e. the end goal. It feels more and more like forward and backward thinking in combinatorics is something I should internalize like in geometry.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CAN FE</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+h2 {font-size : 1.2em; color : #333333;}
+h3 { font-size: 2.2em; }
+#date{
+  color: grey;
+  font-size: 12px;
+}
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+} 
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<div id="header"><h3><a href='../index.html'>Home</a>/A random FE from a Canada handout</h3></div>
+<div id="date">2025-09-27</div>
+<p>Exhibit a function \(f: \mathbf{R} \to \mathbf{R}\) satisfying
+\[f(f(x)) = 2f(x) - x - 2\] </p>
+<h2>Thinking</h2>
+<div class = skib>
+<p>Of course, nothing linear works. Interestingly, every \(f^n(x)\) can be expressed in terms of \(f(x)\) and \(x\). Let's see what this expression is and use \(x \to f(x)\)
+\[f^3(x) = 2(2f(x) - x - 2) - f(x) -  2 = 3f(x) - 2x - 6\]
+\[f^n(x) = nf(x) - (n-1)x - n(n-1)\]
+Okay. \(f\) is injective. If \(f(x) - x = n\), then \(f^{n-1}(x) = x\). 
+\[f^n(x) - xf(x) = (x + n)(f(x) - n + 1)\]
+Oh bah! 
+\[(f(f(x)) - f(x)) - (f(x) - x) = - 2\]
+Let \(g(x) = f(x) - x\). 
+\[g(g(x) + x) - g(x) = -2\]
+</p>
+</div>
+<h2>A solution? Will look later</h2>
+<p><a href="https://math.stackexchange.com/questions/2799829/">https://math.stackexchange.com/questions/2799829/</a></p>
+</body>
+</html>

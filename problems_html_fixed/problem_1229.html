@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1229</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1229 - 2020 RMM, P4 of 6</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(\mathbf N\) be the set of all positive integers. A subset \(A\) of \(\mathbf N\) is sum-free if, whenever \(x\) and \(y\) are (not necessarily distinct) members of \(A\), their sum \(x+y\) does not belong to \(A\). Determine all surjective functions \(f:\mathbf N\to\mathbf N\) such that, for each sum-free subset \(A\) of \(\mathbf N\), the image \(\{f(a):a\in A\}\) is also sum-free.</p>
+<p><i>Note: a function \(f:\mathbf N\to\mathbf N\) is surjective if, for every positive integer \(n\), there exists a positive integer \(m\) such that \(f(m)=n\).</i></p>
+<h2>Thinking (Mock)</h2>
+<div class=skib>
+<p>Odd numbers are the 'biggest' sum-free subset - well, not really. In general, anything \(\not \equiv 0 \pmod{p}\) is a sum-free space? No - any subset of the form \(\equiv x \pmod{p}\) such that \(x \not \equiv 0\) is sum-free. In fact, we can take sum-free subsets of \(\mathbf{F}_p\) and extend those to \(\mathbf{N}\). </p>
+<p>Here's a weak ocondition: \(f(A)\) must not contain \((x, 2x)\) for a sum-free \(A\). Note that any pair \((a, b)\) is a sum-free subset unless \(a = 2b\) or \(b = 2a\). If we look at some (we say <i>some</i> because \(f\) may not be injective) pre-image of \((x, 2x)\), say \((a, b)\), then \((a, b)\) cannot be sum-free, implying \(a = 2b\) or \(b = 2a\). This implies some sort of psudoinjectivity in the following manner: fix an \(x\) and find a \(b\) such that \(f(b) = 2x\). Now if \(a\) satisfies \(f(a) = x\), then \(a = 2b\) or \(a = b/2\). Thus there are at most two values of \(a\) that satisfy \(f(a) = x\) for any \(x\). Also importantly, note that a non-sum-free subset may go to a sum-free subset. </p>
+<p>Let's now look at a preimage of \((x, 2x, 4x)\) because of course this is bound to be better than \((x, 2x, 3x)\) (actually, this is probably worse). In any case, if \(y\) is a preimage of \(4x\), then \(y/2\) or \(2y\) is a preimage of \(2x\), which means \(y/4\) and \(4y\) are the only valid candidates for a pre-image of \(x\). Ooh, pause - since the preimage of \((x, 2x)\) must also be a non-sum-free subset, it cannot be \((y/4, 2y)\) or \((4y, y/2)\). Thus the preimage of \((x, 2x, 4x)\) can only be one of \((y/4, y/2, y)\) and \((4y, 2y, y)\). But wait: \(4x\) can have another preimage, say \(z\) (which is either \(4y\) or \(y/4\)), in which case another chain forms: either \((z/4, z/2, z)\) or \((4z, 2z, z)\) for one of these \(z\). If \(z = y/4\), then the first chain does not fit both of the \(y\) chains, but the second chain \((y, y/2, y/4)\) fits with \((y/4, y/2, y)\). Similarly, if \(z = 4y\), then the second chain does not fit any \(y\) chain, but the first chain \((y, 2y, 4y)\) fits with \((4y, 2y, y)\). Thus, the possible sets of preimages of \((x, 2x, 4x)\) are:
+\[\{(y/4, y/2, y)\}, \;\;\;\; \{(4y, 2y, y)\}, \;\;\;\; \{(y/4, y/2, y), \; (y, y/2, y/4)\} \;\;\;\; \{(4y, 2y, y), \; (y, 2y, 4y)\}\]
+An important thing to note here is that no matter what set we look at, the preimage of \(2x\) is constant within the set. This means that there can only be one preimage of \(2x\) - we don't know what it is, but there can only be one. Furthermore, since \(4x\) is also even, this invalidates the last two sets, implying that the only possible sets are singleton sets: \(\{(y/4, y/2, y)\}\) and \(\{4y, 2y, y\}\). Thus, since there is only one value \(f^{-1}(x)\) can take, \(f\) must be injective overall. Finally, notice that if the chain is \(\{4y, 2y, y\}\), then by induction this chain implies that the \(\nu_2(f^{-1}(x)) \to \infty\), or rather, a finite \(\nu_2\) just is not possible. Thus the only working chain is \(\{y/4, y/2, y\}\), which continues by induction to give a form \(\{t, 2t, 4t, \dots\} \to \{x, 2x, 4x, \dots\}\).</p>
+<p>Now let's look at the preimage of \((x, 3x, 4x)\). Suppose the preimage of \(x\) is \(t\), which means \(4t \to 4x\), and since \(\{t, 4t, f^{-1}(3x)\}\) must form a non-sum-free subset, due to injectivity, \(f^{-1}(3x)\) can only be \(3t\) or \(5t\). But similarly for \((x, 4x, 5x)\), \(f^{-1}(5x)\) can only be \(3t\) or \(5t\). But note that \(f^{-1}(6x)\) can now be \(6t\) or \(10t\), and since \((x, 5x, 6x)\) is not sum-free, we must have \(f(5t) = 5x\) and \(f(3t) = 3x\). We want to generalize this approach to all odd numbers, so let us analyze what we have done. Wait - we are actually done, right? Consider the preimage of \((x, rx, (r+1)x)\). Suppose that \(r\) is even, in which case if \(f(t) = x\), then we know by strong induction that \(f(rt) = rx\). Now since the preimage \((t, rt, f^{-1}((r+1)x))\) of our set must not be sum-free, we must have (and as always note that we cannot take \(2t\) or \(2rt\) because of injectivity), \(f^{-1}((r+1)x) = (r + 1)t\) or \((r-1)t\). But \((r-1)t\) is taken by \((r-1)x\), so the strong inductive hypothesis is complete.  </p>
+<p>Since \(f\) is surjective, and \(f(x) = f^{-1}(1) x\), we have \(f^{-1}(1) = 1\), and \(f(x) = x\) for all \(x\), which clearly works.</p>
+</div>
+<h2>Idea</h2>
+<p>Bash to win.</p>
+
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

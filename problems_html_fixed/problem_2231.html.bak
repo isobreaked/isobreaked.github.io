@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 2231</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 2231 - 2002 IMOSL, C3</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Let \(n\) be a positive integer. A sequence of \(n\) positive integers (not necessarily distinct) is called \(\textbf{full}\) if it satisfies the following condition: for each positive integer \(k\geq2\), if the number \(k\) appears in the sequence then so does the number \(k-1\), and moreover the first occurrence of \(k-1\) comes before the last occurrence of \(k\). For each \(n\), how many full sequences are there ?</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1146</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1146 - 2021 RMM, P5 of 6, GC</h1>
+<h2 class='difficulty'>Difficulty: 8</h2>
+<p>Let \(n\) be a positive integer. The kingdom of Zoomtopia is a convex polygon with integer sides, perimeter \(6n\), and \(60^\circ\) rotational symmetry (that is, there is a point \(O\) such that a \(60^\circ\) rotation about \(O\) maps the polygon to itself). In light of the pandemic, the government of Zoomtopia would like to relocate its \(3n^2+3n+1\) citizens at \(3n^2+3n+1\) points in the kingdom so that every two citizens have a distance of at least \(1\) for proper social distancing. Prove that this is possible. (The kingdom is assumed to contain its boundary.)</p>
+<p>\newpage</p>
+<p>\section{Number Theory}</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

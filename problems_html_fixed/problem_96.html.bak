@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 96</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: #dedede; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}
+
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 96 - 2004 Niels Henrik Abel Contest (Norway), P4</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Among the \(n\) inhabitants of an island, where \(n\) is even, every two are either friends or enemies. One day, the chief of the island orders that each inhabitant (including himself) makes and wears a necklace consisting of marbles, in such a way that two necklaces have a marble of the same type if and only if their owners are friends.
+<ol><li>Show that the chief’s order can be achieved by using \(n^2/4\) different types of marbles.</li><li>Prove that this is not necessarily true with less than \(n^2/4\) types of marbles.</li></ol></p>
+<h2>Thinking</h2>
+<div class='skib'>
+<p>Instant thoughts of a \(K_{n/2,\,n/2}\). The reason this guarantees \(n^2/4\) colors is because there is no 3-cycle and there are \(n^2/4\) edges. </p>
+<p>In fact, a group of \(k\) people share the same color iff they form a clique. So we want to show that we can cover a graph on \(n\) vertices with at most \(n^2/4\) cliques. </p>
+<p>To show this, we induct on \(n\). Suppose we have a graph on \(n +2\) vertices. We take two vertices \(u\) and \(v\) such that they are connected. Note by the induction hypothesis that the graph with \(u\) and \(v\) deleted can be covered by at most \(n^2/4\) cliques by the induction hypothesis. Let the vertices other than \(u\) and \(v\) be called \(w_1\), \(\dots\), \(w_n\). Then considering \(u\), \(v\) and some \(w_i\), there is at most one clique added - if \(w_i\) is connected to both \(u\) and \(v\), then a triangle is added, and if only one of them, then a \(2\)-clique is added. So in all, at most \(n+1\) cliques are added, where the \(+1\) comes from the \(2\)-clique \(u-v\), giving a total of 
+\[\frac{n^2}{4}+ n + 1 = \frac{(n+2)^2}{4}\]</p>
+</div>
+<h2>Idea</h2>
+<p>Although the problem is fairly simple, it's always helpful to keep the equality case in mind.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

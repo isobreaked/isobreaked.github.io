@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sequences/23N5</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+  body { font-family: Arial, sans-serif; margin: 40px; }
+  h1 { font-size: 1.6em; }
+  h2 {font-size : 1.2em; color : #333333;}
+  h3 { font-size: 2.2em; }
+  .difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+  .skib {
+    border-left: 4px solid #000; /* Bold left accent */
+    background-color: lavender; /* Very light gray */
+    padding: 1px 20px; /* less top/bottom padding, same left/right */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+  }	
+  p { line-height: 1.45; }
+  ol, ul { margin-left: 1.2em; }
+  li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+  <div id="header"><h3><a href='../index.html'>Home</a>/Some Sequences</h3></div>
+
+  <p>After failing 2023 N5, Yousuf kindly gave me some problem suggestions on a similar ideology. Let's do them!</p>
+  <h1>2020 China MO P5</h1>
+  <p>Given any positive integer \(c\), denote \(p(c)\) as the largest prime factor of \(c\). A sequence \(\{a_n\}\) of positive integers satisfies \(a_1>1\) and \(a_{n+1}=a_n+p(a_n)\) for all \(n\ge 1\). Prove that there must exist at least one perfect square in sequence \(\{a_n\}\).</p>
+  <h2>Thinking</h2>
+  <div class=skib>
+    <p>Of course, this holds for \(a_1 = q\) for any prime \(q\), since \(a_q = q^2\). Again, the problem with this kind of thing (as in 2023 N5) is that focusing locally on how a particular prime behaves, or its \(\nu_p\), or whether it shows up again - all of this is bound to be a lost cause. So instead we want to do something magical. Okay, I just had a cool idea - let \(p(a_n)r(a_n) = a_n\), then
+      \[a_{n+1} = a_n \left(\frac{r(a_n) + 1}{r(a_n)}\right)\]
+    How does \(r\) behave? After analyzing small cases for \(a_1\), we realize that if \(r\) ever becomes smaller than \(p\), then it's a massive cook. This is equivalent to saying that if \(p(a_i) > \sqrt{a_i}\), then we're done. What if we look at the ratio \(p(a_i)/r(a_i)\)? The time we would like to analyze for \(r < p\) is obviously when a new prime appears since during the time period of a particular prime \(r\) just increases by \(1\) in each step.
+  \[(p(a_i), r(a_i) - k) \to (p(a_i), r(a_i)) \to (p(a_{i+1}), r(a_{i+1})) = (q, p(a_i) (r(a_i) + 1) / q), \;\;\;\; q = p(r(a_i) + 1)\]
+I tried out some sad inequality stuff and that doesn't really work. Wait, if \(r\) is ever a prime, then we're done because \(r \le p\) must hold, otherwise \(p\) would be \(r\). But \(r\) must eventually take a prime value because \(r\) just increases by \(1\) in each turn and is unbounded (if \(r\) was bounded, then \(p > r\) would happen anyways). 
+</p>  </div>
+
+  <h1>2007 USAMO P1</h1>
+  <p>Let \(n\) be a positive integer. Define a sequence by setting \(a_1= n\) and, for each \(k > 1\), letting \(a_k\) be the unique integer in the range \(0\leq a_k\leq k-1\) for which \(a_1+a_2+...+a_k\) is divisible by \(k\). For instance, when \(n = 9\) the obtained sequence is \(9,1,2,0,3,3,3, \dots\). Prove that for any \(n\) the sequence \(a_1,a_2, \dots\) eventually becomes constant.</p>
+  <h2>Thinking</h2>
+  <div class=skib>
+    <p>We want to show
+    \[a_1 + a_2 + \dots + a_k \equiv -ri \pmod{k + r} \implies a_1 + a_2 + \dots + a_k \equiv ki \pmod{k+r} \;\; \forall r\]
+    So we want to prove that there is some value of \(k\) such that \(\frac{a_1 + a_2 + \dots + a_k}{k} = i\) where \(i < k\). But supposing this is not true, we would have \(a_1 + a_2 + \dots + a_k \ge k^2\) for all \(k\), which means
+  \[a_1 \ge k^2 - a_2 - a_3 - \dots - a_k \ge k^2 - 1 - 2 - \dots - (k-1) = \frac{k(k+1)}{2} \;\; \forall k\]
+However, \(a_1\) is finite, so it cannot be greater than an unbounded sequence for all \(k\), thus we are done.</p>
+  </div>
+
+  <h1>2024 Malaysia APMOCST P1</h1>
+  <p>Let \(a_1 < a_2 <  \cdots\) be a strictly increasing sequence of positive integers. Suppose there exist \(N\) such that for all \(n>N\), \[a_{n+1}\mid a_1+a_2+\cdots+a_n\]
+    Prove that there exist \(M\) such that \(a_{m+1}=2a_m\) for all \(m>M\).</p>
+    <h2>Thinking</h2>
+    <div class=skib>
+      <p>This is the same redefinition as 2023 N5. Let \(a_n b_n = a_1 + a_2 + \dots + a_{n-1}\), which implies \(a_n (b_n + 1) = a_{n+1} b_{n+1}\), and since \(a_n < a_{n+1}\), we must have \(b_n + 1 > b_{n+1}\). Thus \(b\) eventually becomes constant, at a value \(c\). This means 
+      \[a_{n} = \frac{c+1}{c}a_{n-1} = \frac{(c+1)^e}{c^e} a_{n-e}\]
+      Since \(a_i\) is an integer sequence, \(c\) cannot have any prime factors and \(c = 1\) must be true, implying \(a_{m+1} = 2a_m\) for large \(m\).  </p>
+    </div>
+</body>
+</html>

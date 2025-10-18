@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 782</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 782 - 2020 USA TST, P4 of 6</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>For a finite simple graph \(G\), we define \(G'\) to be the graph on the same vertex set as \(G\), where for any two vertices \(u \neq v\), the pair \(\{u,v\}\) is an edge of \(G'\) if and only if \(u\) and \(v\) have a common neighbor in \(G\).
+<br><br>
+Prove that if \(G\) is a finite simple graph which is isomorphic to \((G')'\), then \(G\) is also isomorphic to \(G'\).</p>
+
+<h2>Thinking</h2>
+<div class=skib>
+<p>First few things I noticed: \(5\)-cycles are exactly the same, and this applies to any \(C_{2n+1}\). \(C_{2n}\) do not remain the same, they deteriorate into \(2\) separate \(C_n\), and if \(n\) is even, then in \(G''\) they deteriorate even further. Is it possible for the longest cycle of \(G\) to be an even cycle then? Yes - just consider a \(K_{2n}\). </p>
+<p>In any case, isomorphism is a very strong and hard-to-obtain condition, so we must extract some easier to deal with, weaker but sufficiently strong condition so that we can solve the problem. Some conditions: the resulting graph must have the same number of edges, same number of cycles of length \(k\) as the original graph, same number of cliques of size \(k\) as the original graph. Note that odd cycles and cliques are already going to be the same unless external interference occurs. </p>
+<p>It is easy to see that if the graph has a clique of size \(c \ge 3\), then the graph must be complete - otherwise there is some vertex not in the clique connected to a vertex in the clique, and in \(G''\) this becomes a clique of size \(c + 1\). Taking the largest clique, we have a problem. Of course, we have already verified that complete graphs satisfy \(G \cong G'\), so now the only case we have remaining is that there are no cliques in the graph. </p>
+<p>Now consider the same sort of thing with an odd cycle of length \(\ge 3\). If there is something not in the cycle connected to something in the cycle, then a triangle is formed in \(G'\) - which is bad, because the number of triangles should have remained the same for \(G \cong G''\) and triangles can't be destroyed. In fact, even if something <i>in the cycle</i> is connected to something non-adjacent to it in the cycle in \(G\), then \(G''\) is not isomorphic to \(G\). So the graph \(G\) must either be an odd cycle (in which case \(G \cong G'\)) or must have no odd cycles.</p>
+<p>We have no odd cycles and no cliques. So \(G\) is bipartite. Oh bruh wait a triangle spawns even if there is a random edge with an even cycle, and an even cycle doesn't work (\(G \ncong G''\)), so we can eliminate even cycles too! So \(G\) is a tree. Consider a rooted tree, rooted at a leaf. Aha! At the 'splitting points', where a chain splits into other chains, in \(G'\) a triangle is formed - so there can be no splitting points, and the tree must be a chain. And chains just split into \(\ge 2\) connected components, so \(G \ncong G''\) and we are done.</p>
+</div>
+
+<h2>Idea</h2>
+<p>Very funny problem. A key takeaway is that when you have a 'strong condition' like isomorphism that is hard to deal with, try to establish sufficiently strong (but obviously weaker) and nicer, easier to deal with conditions. Do random stuff with these conditions and figure things out. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

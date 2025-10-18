@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 817</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  /* we chillin */ /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+}	
+
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 817 - 2020 USEMO, P4 of 6</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>A function \(f\) from the set of positive real numbers to itself satisfies \[f(x + f(y) + xy) = xf(y) + f(x + y)\]for all positive real numbers \(x\) and \(y\). Prove that \(f(x) = x\) for all positive real numbers \(x\).</p>
+<h2>Thinking</h2>
+<div class= skib>
+<p>Let \(x = (y - f(y))/y\). This gives \(xf(y) = 0\), so \(f(y) \ge y\) for all \(y\). The symmetry substitution tells us
+\[f(x + f(y) + xy) - xf(y) = f(y + f(x) + xy) - yf(x)\]
+\[f(1 + y + f(y)) - f(1 + y) = f(y)\]
+We know that \(f(x + f(y) + xy) \ge xf(y)\), and \(f(x + f(y) + xy) > f(x + y)\). Let \(f(x) = g(x) + x\) - since \(f(x) \ge x\), this is a valid function from \(\mathbf{R}^+ \to \mathbf{R}_{\ge 0}\), which means
+\[g(x + y + xy + g(y)) + g(y)  = xg(y) + g(x + y)\]
+Suppose there exists \(e\) such that \(g(e) = 0\). Then, \(y \to e\) gives \(g(x + e + xe) = g(x + e)\) for all \(x\). But more interestingly, notice that if \(x < 1\) and \(x + y = e\), then \(g\) can take on a negative value - this is absurd and thus means that \(g(y) = 0\) for all \(e - 1 < y < e\). This extended easily implies that \(f(y) = 0\) for all \(y \le e\). But also note that when \(x = 1\), we have
+\[g(1 + 2y + g(y)) = g(1 + y)\]
+Here substituting \(e - 1\) if \(e > 1\) gives us a bigger value of \(e\), extending our argument for all positive reals. Thus all that remains is to find some \(e > 1\) with \(f(e) = 0\). Suppose \(g(y) \neq 0\) for all \(y\). Then \(g(x+y) < g(x+y+xy+g(y))\) for all \(x > 1\), and \(g(x+y) > g(x+y+xy+g(y))\) for all \(x< 1\). So if \(y > 1 > x\), then
+\[g(x + y + xy + g(x)) > g(x + y) > g(x + y + xy + g(y))\]
+But \(g\) is notably not injective, so if we can obtain \(x\), \(y\) such that \(g(x) = g(y)\), it will be the end of this whole regime. We would have been able to do this using \(g(1+2y+g(y)) = g(1+y)\) but here \(x < 1\). In the main equation, taking \(x\), \(y\) such that \(g(x) = g(y)\) and \(x \neq y\) gives us \(g(x) = g(y) = 0\). Hold up - we know that \(g(1 + y) = g(1 + 2y + g(y))\) - so \(g(1 + y) = 0\) for all \(y\) and we are done.</p>
+</div>
+<h2>Idea</h2>
+<p>I was clowning a lot. Would definitely say the main idea is to write down all your ideas - especially when you can't make any progress. For example, one may think about \(f(x) = g(x) + x\) but not write it down because it 'seems to be' bad.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

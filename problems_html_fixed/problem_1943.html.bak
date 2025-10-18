@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1943</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1943 - 2024 Canada MO, P5 of 5, G</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Initially, three non-collinear points, \(A\), \(B\), and \(C\), are marked on the plane. You have a pencil and a double-edged ruler of width \(1\). Using them, you may perform the following operations:
+<ul><li>Mark an arbitrary point in the plane.</li><li>Mark an arbitrary point on an already drawn line.</li><li>If two points \(P_1\) and \(P_2\) are marked, draw the line connecting \(P_1\) and \(P_2\).</li><li>If two non-parallel lines \(l_1\) and \(l_2\) are drawn, mark the intersection of \(l_1\) and \(l_2\).</li><li>If a line \(l\) is drawn, draw a line parallel to \(l\) that is at distance \(1\) away from \(l\) (note that two such lines may be drawn).</li></ul>
+Prove that it is possible to mark the orthocenter of \(ABC\) using these operations.</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 1620</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 1620 - 2023 ASC, P4 of 5</h1>
+<h2 class='difficulty'>Difficulty: 6</h2>
+<p>Counters are placed, one at a time, in the unit squares of an \(n \times n\) grid according to the following rules:
+<ol><li>A counter can only be placed in an empty unit square.</li><li>The first counter can be placed in any unit square.</li><li>Each subsequent counter can only be placed in a unit square \(S\) if the number of counters already in the same row as \(S\) and the number of counters already in the same column as \(S\) sum to an odd number.</li></ol> 
+For each value of \(n\geq 2\), find the smallest possible number of empty unit squares remaining after a sequence of such placements.</p>
+<h2>Idea</h2>
+<p>The actual value is fairly simple to see - you can solve the full problem for evens quickly. For odds, you want to try seeing what cells you can't fill - noticably, it is all but one of a rook-set. </p>
+<p>It's not trivial to see what this means - but we can look at what exactly happens when we fill things in. Let there be a button on every row and every column. Then after each move, there are exactly 2 buttons: 1 from the last step being pressed - this signifies that there are exactly 2 row/columns that we can place something into. </p>
+<p>From here, we soon observe that there's an up-right chain of squares filled (the number of times I've seen up-right chains is insane). Draw a graph, or alternatively, just see that you can't ever move along a row twice - you enter, move along, exit. It seems like drawing graphs for up-right paths like always works or something. </p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>
