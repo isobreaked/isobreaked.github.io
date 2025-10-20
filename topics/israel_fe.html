@@ -99,7 +99,7 @@ Again, due to size reasons, \(f(4) = 3\) does not work, implying \(f(4) = 1\). <
 \[mf(k+1) + f(m + 1) \mid f(km + 1) + m\]
 Suppose \(d \mid k\) and \(f(k + 1) = d\). Since \(f(k + 1) \mid f(km + 1)\), \(f(km +1 )= dx\) for some \(x\) such that \(x \mid mk/d\).
 \[md + f(m + 1) \mid dx + m\]
-Take \(m = p\), the smallest prime \(\le k\). We use Bertrand's postulate. 
+Take \(m = p\), the largest prime \(\le k\). We use Bertrand's postulate. 
 \[pd + 1 \mid dpe + p \implies pd + 1 \mid de + 1 \implies d = 1\]
 \[pd + 1 \mid de + p \implies d = 1, 2\]
 But \(d = 2\) means \(2p + 1 \mid de + p\), which means \(de \ge p + 1\), but since \(de \le 2p\) by Bertrand's, this means \(de = p + 1 \mid k\). Bertrand says this means \(de = p + 1 = k\). But Bertrand also then says that there is another prime between \(p - 1\) and \((p-1)/2\), which is probably enough to obtain the contradiction we need. Thus \(\boxed{f(k + 1) = d = 1}\) for all \(k\), and the only value of \(f(1)\) that works this time is \(1\). </p>
