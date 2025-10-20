@@ -69,22 +69,50 @@ which again means \(f(m) \nmid f(nmf(m))\) if \(f(m) \neq 1\). But now we get so
 \[mf(nf(n) + 1) + f(nf(n)) f(m + 1) \mid f(mnf(n) + 1) + mf(nf(n))\]
 Indeed, this means that if \(f(n) \mid f(m + 1)\), then \(f(n) \mid m\), which is sensational. It first implies by taking \(n = m + 1\), that 
 \[f(m + 1) \mid m\]
-and furthermore from the main equation, it implies
+and furthermore from the main equation, we obtain
 \[f(m + 1) \mid f(mn + 1)\]</p>
-<p>Now it is time to cook. Since \(f(p + 1) \mid p\) for primes \(p\), I would like to show that it is not possible that \(f(p + 1) = p\) and \(f(q + 1) = 1\) for distinct primes \(p\), \(q\). Substituting, 
-\[p + pf(q) \mid f(pq + 1) + pf(q)\]
-\[pq + f(p) \mid f(pq + 1) + qf(p)\]
-
+</div>
+<h2>More cooking</h2>
+<div class=skib>
+<p>Now it is time to cook. Since \(f(p + 1) \mid p\) for primes \(p\), we might want to do something with primes. Also since \(f(m) \mid m - 1\), we must have \(\gcd(f(m), m) = 1\).
 \[mf(n+1) + f(n)f(m+1) \mid f(mn+1) + mf(n)\]
-\[pf(q + 2) + p \mid f(pq + p + 1) + p\]
-\[qf(p + 2) + p \mid f(pq + q + 1) + qp\]
-
+Suppose \(f(m +1 ) = m\) for some \(m\), in which case we get
+\[mf(n+1) + mf(n) \mid f(mn + 1) + mf(n) \implies mf(n+1) \le f(mn+1)\]
+So if \(f(n+1) = n\) as well, then \(mn \le f(mn+1)\) - but \(f(mn+1) \mid mn\), so we get \(f(mn+1) = mn\).
+\[f(m+1) = m \;\;\text{ and }\;\; f(n+1) = n \implies f(mn+1) = mn\]
 </p>
+<p>Working with \((m, m)\), we get
+\[(m + f(m))f(m+1) \mid f(m^2 + 1) + mf(m)\]
+An immediate consequence of this is that if \(m \mid f(m^2 + 1)\), then \(f(m^2 + 1) = m^2\). <br><br>
+If \(f(m) = 1\), then 
+\[(m+1)f(m+1) \mid f(m^2+1) + m\]
+Since \(f(m^2 + 1) \mid m^2\), we must have \(f(m^2 + 1) = 1\) or \(m^2\) so that the above divisibility is satisfied - if \(f(m^2 + 1) = 1\), then \(f(m +1 ) = 1\), and if \(f(m^2 + 1) = m^2\) then \(f(m + 1) \mid m\). <br><br>
+Similarly, if \(f(m) = m - 1\), then
+\[(2m - 1)f(m + 1) \mid f(m^2 + 1) + m^2 - m\]
+If \(m\) is even, then \(f(m^2 + 1)\) is either \(m/2\) or \(m^2\) - which means \(f(m + 1)\) is either \(m/2\) or \(m\). If \(m\) is odd, then \(f(m^2 + 1)\) must be \(m^2\), meaning \(f(m +1)\) must be \(m\).
+</p>
+<p>I have got to be stupid. 
+\[mf(n+1) + f(n)f(m+1) \mid f(mn+1) + mf(n)\]
+Plug \(n = 2\), and obtain
+\[mf(3) + f(m + 1) \mid f(2m + 1) + m\]
+If \(f(3) = 2\), then since \(f(2m + 1) \mid 2m\), we must have \(f(2m + 1) = 2m\) for all \(m\), and \(\boxed{f(m + 1) = m}\) for all \(m\). Any value of \(f(1)\) works with this function. Thus let us now consider when \(f(3) = 1\). 
+\[m + f(m + 1) \mid m + f(2m + 1) \implies f(m + 1) = 1\iff f(2m + 1) = 1 \;\;\;\; \text{(unless } m = 2 \text{)}\] 
+Plug \(n = 3\), and obtain 
+\[mf(4) + f(m + 1) \mid f(3m + 1) + m\]
+Again, due to size reasons, \(f(4) = 3\) does not work, implying \(f(4) = 1\). </p>
+<p> Let us strong induct. Plug \(n = k\), and obtain 
+\[mf(k+1) + f(m + 1) \mid f(km + 1) + m\]
+Suppose \(d \mid k\) and \(f(k + 1) = d\). Since \(f(k + 1) \mid f(km + 1)\), \(f(km +1 )= dx\) for some \(x\) such that \(x \mid mk/d\).
+\[md + f(m + 1) \mid dx + m\]
+Take \(m = p\), the smallest prime \(\le k\). We use Bertrand's postulate. 
+\[pd + 1 \mid dpe + p \implies pd + 1 \mid de + 1 \implies d = 1\]
+\[pd + 1 \mid de + p \implies d = 1, 2\]
+But \(d = 2\) means \(2p + 1 \mid de + p\), which means \(de \ge p + 1\), but since \(de \le 2p\) by Bertrand's, this means \(de = p + 1 \mid k\). Bertrand says this means \(de = p + 1 = k\). But Bertrand also then says that there is another prime between \(p - 1\) and \((p-1)/2\), which is probably enough to obtain the contradiction we need. Thus \(\boxed{f(k + 1) = d = 1}\) for all \(k\), and the only value of \(f(1)\) that works this time is \(1\). </p>
 </div>
 
 
 <h1>Random AoPS CRT-esque constructNT</h1>
-<p>Let \(b_1 < b_2 < \dots\) be the sequence of natural numbers that are the sum of two squares. Prove that there exist infinitely many \(m\) such that \(b_{m+1} - b_m = 2015\).</p>
+<p>Let \(b_1 < b_2 < \dots\) be the sequence of natural numbers that are the sum of two quares. Prove that there exist infinitely many \(m\) such that \(b_{m+1} - b_m = 2015\).</p>
 <h2>Thinking</h2>
 <div class=skib>
 <p>
