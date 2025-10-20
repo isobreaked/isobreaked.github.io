@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>ISR FE</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+h2 {font-size : 1.2em; color : #333333;}
+h3 { font-size: 2.2em; }
+#date{
+  color: grey;
+  font-size: 12px;
+}
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; }
+.skib {
+  border-left: 4px solid #000; /* Bold left accent */
+  background-color: lavender; /* Very light gray */
+  padding: 1px 20px; /* less top/bottom padding, same left/right */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */
+} 
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<div id="header"><h3><a href='../index.html'>Home</a>/Random Israel FE (2399)</h3></div>
+<div id="date">Last edited: 2025-10-20</div>
+<p>Migrated from <tt>some_problems.html</tt></p>
+<p>Find all functions \(f : \mathbf{Z}_{> 0} \to \mathbf{Z}_{> 0}\) such that for all positive integers \(m\), \(n\):
+\[mf(n+1) + f(n)f(m+1) \mid f(mn+1) + mf(n)\]
+and \(\gcd(f(n), f(n+1)) = 1\).</p>
+<h2>Thinking, part 1</h2>
+<div class=skib>
+<p>Interestingly, nothing completely linear without pointwise \(1\)s works, and the only constant function that works is, of course, \(f(n) \equiv 1 \).
+\[f(n+1) + f(n)f(2) \mid f(n+1) + f(n) \implies f(2) = 1\]
+\[m + f(1)f(m+1) \mid f(m+1) + mf(1) \implies m + f(1)f(m+1) \le f(m+1) + mf(1) \implies f(m+1)(f(1) - 1) \le m(f(1)  -1)\]
+So either \(f(1) = 1\) or \(f(m+1) \le m\) for all \(m \ge 1\).
+\[m + f(1)f(m+1) \mid f(m+1) + mf(1) \implies m + f(1)f(m+1) \mid f(m+1)(f(1)^2 - 1) \implies m \le f(m+1)(f(1)^2 - f(1) - 1)\]
+So again, either \(f(1) = 1\) or \(m \le f(m+1)(f(1)^2 - f(1) - 1)\).</p>
+<p>Suppose \(f(1) = 1\). This is useless. 
+\[mf(3) + f(m+1) \mid f(2m + 1) + m\]
+\[2f(m+1) + f(3)f(m) \mid f(2m + 1) + 2f(m)\]
+Okay, let's suppose \(f(m +1 ) \le m \le f(m+1)(f(1)^2 - f(1) - 1)\) and simply not care about \(f(1)\) (although we will have to, later). Never mind, I think we have to do casework and show some things like
+<ul>
+<li>If there are infinitely many \(1\)s then \(f\) is identically \(1\).</li>
+<li>Else consider the point after which there are no \(1\)s.
+</ul>
+</p>  
+</div>
+<h2>Thinking a few days later, and with the power of love</h2>
+<div class=skib>
+<p>We first observed that if \(f(1) = k\) for any \(k\), then \(f(n) = n - 1\) otherwise is a working function. So \(f(1)\) is really very useless and the \(f(1) = 1\) or \(f(m + 1) \le m\) constraint is very depressing because \(f(1) = 1\) can just be true whenever it wants. Then using some simple substitutions, we observed that something like \(f(i) = 1\) for \(i \in [1, c]\) for some \(c\), and \(f(n) = n -1\) otherwise, is <i>not</i> a working function. We then noticed these interesting facts:
+\[m \mid f(m + 1) \implies m \mid f(m n + 1)\] 
+\[m \mid f(n) \implies m \mid f(mn + 1)\]</p>
+<p>Then we got the first real bit of progress - if we substitute \(m \to f(n)\), then we obtain 
+\[f(n) \mid f(nf(n) + 1)\]
+which also means \(f(n) \nmid f(nf(n))\) if \(f(n) \neq 1\). In any case, this proves to be very useful, since substituting now \(m \to mf(m)\) in the main equation, we get
+\[f(m) \mid f(nmf(m) + 1) \;\; \forall n\]
+which again means \(f(m) \nmid f(nmf(m))\) if \(f(m) \neq 1\). But now we get something even better - by plugging in \(n \to nf(n)\), we obtain
+\[mf(nf(n) + 1) + f(nf(n)) f(m + 1) \mid f(mnf(n) + 1) + mf(nf(n))\]
+Indeed, this means that if \(f(n) \mid f(m + 1)\), then \(f(n) \mid m\), which is sensational. It first implies by taking \(n = m + 1\), that 
+\[f(m + 1) \mid m\]
+and furthermore from the main equation, we obtain
+\[f(m + 1) \mid f(mn + 1)\]</p>
+</div>
+<h2>More cooking</h2>
+<div class=skib>
+<p>Since \(f(p + 1) \mid p\) for primes \(p\), we might want to do something with primes. Also since \(f(m) \mid m - 1\), we must have \(\gcd(f(m), m) = 1\).
+\[mf(n+1) + f(n)f(m+1) \mid f(mn+1) + mf(n)\]
+Suppose \(f(m +1 ) = m\) for some \(m\), in which case we get
+\[mf(n+1) + mf(n) \mid f(mn + 1) + mf(n) \implies mf(n+1) \le f(mn+1)\]
+So if \(f(n+1) = n\) as well, then \(mn \le f(mn+1)\) - but \(f(mn+1) \mid mn\), so we get \(f(mn+1) = mn\).
+\[f(m+1) = m \;\;\text{ and }\;\; f(n+1) = n \implies f(mn+1) = mn\]
+</p>
+<p>Working with \((m, m)\), we get
+\[(m + f(m))f(m+1) \mid f(m^2 + 1) + mf(m)\]
+An immediate consequence of this is that if \(m \mid f(m^2 + 1)\), then \(f(m^2 + 1) = m^2\). <br><br>
+If \(f(m) = 1\), then 
+\[(m+1)f(m+1) \mid f(m^2+1) + m\]
+Since \(f(m^2 + 1) \mid m^2\), we must have \(f(m^2 + 1) = 1\) or \(m^2\) so that the above divisibility is satisfied - if \(f(m^2 + 1) = 1\), then \(f(m +1 ) = 1\), and if \(f(m^2 + 1) = m^2\) then \(f(m + 1) \mid m\). <br><br>
+Similarly, if \(f(m) = m - 1\), then
+\[(2m - 1)f(m + 1) \mid f(m^2 + 1) + m^2 - m\]
+If \(m\) is even, then \(f(m^2 + 1)\) is either \(m/2\) or \(m^2\) - which means \(f(m + 1)\) is either \(m/2\) or \(m\). If \(m\) is odd, then \(f(m^2 + 1)\) must be \(m^2\), meaning \(f(m +1)\) must be \(m\).
+</p>
+<p>I have got to be stupid. 
+\[mf(n+1) + f(n)f(m+1) \mid f(mn+1) + mf(n)\]
+Plug \(n = 2\), and obtain
+\[mf(3) + f(m + 1) \mid f(2m + 1) + m\]
+If \(f(3) = 2\), then since \(f(2m + 1) \mid 2m\), we must have \(f(2m + 1) = 2m\) for all \(m\), and \(\boxed{f(m + 1) = m}\) for all \(m\). Any value of \(f(1)\) works with this function. Thus let us now consider when \(f(3) = 1\). 
+\[m + f(m + 1) \mid m + f(2m + 1) \implies f(m + 1) = 1\iff f(2m + 1) = 1 \;\;\;\; \text{(unless } m = 2 \text{)}\] 
+Plug \(n = 3\), and obtain 
+\[mf(4) + f(m + 1) \mid f(3m + 1) + m\]
+Again, due to size reasons, \(f(4) = 3\) does not work, implying \(f(4) = 1\). </p>
+<p> Let us strong induct. Plug \(n = k\), and obtain 
+\[mf(k+1) + f(m + 1) \mid f(km + 1) + m\]
+Suppose \(d \mid k\) and \(f(k + 1) = d\). Since \(f(k + 1) \mid f(km + 1)\), \(f(km +1 )= dx\) for some \(x\) such that \(x \mid mk/d\).
+\[md + f(m + 1) \mid dx + m\]
+Take \(m = p\), the smallest prime \(\le k\). We use Bertrand's postulate. 
+\[pd + 1 \mid dpe + p \implies pd + 1 \mid de + 1 \implies d = 1\]
+\[pd + 1 \mid de + p \implies d = 1, 2\]
+But \(d = 2\) means \(2p + 1 \mid de + p\), which means \(de \ge p + 1\), but since \(de \le 2p\) by Bertrand's, this means \(de = p + 1 \mid k\). Bertrand says this means \(de = p + 1 = k\). But Bertrand also then says that there is another prime between \(p - 1\) and \((p-1)/2\), which is probably enough to obtain the contradiction we need. Thus \(\boxed{f(k + 1) = d = 1}\) for all \(k\), and the only value of \(f(1)\) that works this time is \(1\). </p>
+</div>
+</body>
+</html>
