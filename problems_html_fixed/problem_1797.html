@@ -17,7 +17,18 @@ li { margin-bottom: 0.4em; }
 <body>
 <h1>Problem 1797 - 2023 IMC, P4 of 10 (adapted) , N</h1>
 <h2 class='difficulty'>Difficulty: 7</h2>
-<p>Let \(p>2\) be a prime number and let \(k\) be a positive integer. Suppose that the numbers \(a_i=i^k+i\) for \(i=0,1, \ldots,p-1\) leave pairwise distinct remainders apon division by \(p\). What is the set of possible remainders of \(a_2\) upon division by \(p\)?</p>
+<p>Let \(p>2\) be a prime number and let \(k\) be a positive integer. Suppose that the numbers \(a_i=i^k+i\) for \(i=0,1, \ldots,p-1\) leave pairwise distinct remainders upon division by \(p\). What is the set of possible remainders of \(a_2\) upon division by \(p\)?</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>The distint remainders condition means that for any \(i\), \(j\),
+\[i^k + i \not \equiv j^k + j \pmod{p}\]
+Of course, taking \(i = 0\) and \(1\), we observe that \(0\) and \(2\) are off limits:
+\[i^k \not \equiv -i \pmod{p}\]
+\[i^k \not \equiv 2 - i \pmod{p}\]
+Note that \(k\) is odd, if otherwise then \((p - 1)^k + (p - 1) \equiv 0 \pmod{p}\). Thus the value for \(p - 1\) is \(-2\), and all the values from \((p + 1)/2\) to \(p - 1\) are just negations of the values from \(1\) to \((p - 1)/2\).</p>
+</div>
+<h2>Idea</h2>
+<p></p>
 <p><a href="../problem_tracker.html">Back to Problem List</a></p>
 </body>
 </html>
