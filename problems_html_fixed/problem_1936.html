@@ -19,6 +19,30 @@ li { margin-bottom: 0.4em; }
 <h2 class='difficulty'>Difficulty: 7</h2>
 <p>Find all functions \(f:\mathbf N_+\to \mathbf N_+,\) such that for all positive integer \(a,b,\)
 \[\sum_{k=0}^{2b}f(a+k)=(2b+1)f(f(a)+b).\]</p>
+<h2>Thinking (Mock)</h2>
+<div class=skib>
+<p>Let us first substitute \(b = 1\) to see what is happening.
+\[f(a) + f(a + 1) + f(a + 2) = 3f(f(a) + 1)\]
+The only linear function that works is \(f(n) = n\). Subtracting \(P(a, b)\) from \(P(a, b + 1)\), we get
+\[f(a + 2b + 1) + f(a + 2b + 2) = (2b + 3) f(f(a) + b + 1) - (2b + 1) f(f(a) + b)\]
+But also subtracting \(P(a + 2, b - 1)\) from \(P(a + 2, b)\), we get
+\[f(a + 2b + 1) + f(a + 2b + 2) = (2b + 1)f(f(a + 2) + b) - (2b - 1)f(f(a + 2) + b - 1)\]
+Also note that 
+\[f(a + 2b) + f(a + 2b + 1) + f(a + 2b + 2) = 3f(f(a + 2b) + 1)\]  
+So we have a lot of interesting things. We also have divisibility obtained directly from the main equation, and things like
+\[f(a) + 5f(f(a - 5) + 2) = 3f(f(a - 2) + 1) + 3f(f(a - 5) + 1)\]
+</p>
+<p>In any case, what I was thinking about right now was that if \(c = f(1) > 2\), then \(f(1) + f(2) + f(3) = 3f(c + 1)\), which means that if we fix the values of \(f(1)\) to \(f(c)\) and \(k\) is the maximum of these, then \(f\) is a bounded function with maximum value \(k\) - wait, why? Let us deal with this case later. Suppose instead that \(f(1) = 2\), which means 
+\[f(1) + f(2) + f(3) = 3f(3) \]
+\[f(1) + f(2) + f(3) + f(4) + f(5) = 5f(4)\]
+\[f(1) + f(2) + \dots + f(2b + 1) = (2b + 1)f(b + 2)\] </p>
+</div>
+<h2>Thinking (post Mock)</h2>
+<div class=skib>
+<p></p>
+</div>
+<h2>Idea</h2>
+<p></p>
 <p><a href="../problem_tracker.html">Back to Problem List</a></p>
 </body>
 </html>

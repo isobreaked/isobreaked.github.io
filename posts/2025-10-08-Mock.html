@@ -32,12 +32,6 @@ li { margin-bottom: 0.4em; }
 <p>The fact that there exists such an index \(i\) for \(q\) means that we have no control over what the residues mod \(q\) want to do - which is so absurd because it looks like the problem is completely free (which in fact, deep down, we know is not because there are too many conditions). The problem is that these conditions are not implementable trivially into what we are doing.</p>
 <p>Okay let's just work up from \(a_1\) and see what can possibly go wrong. So \(a_2 \mid 2a_1\), which means \(a_2 = 2a_1\). Then \(a_3 \mid 2(a_1 + 2a_1) = 6a_1\), which means \(a_3 = 3a_1\) or \(6a_1\). Then \(a_4 \mid 2(a_1 + a_2 + a_3)\) which means if \(a_3 = 3a_1\), then \(a_4 = 4a_1\), \(6a_1\), \(12a_1\) and if \(a_3 = 6a_1\), then \(a_4 = 9a_1\), \(18a_1\). Okay, so it's not true that \(a_1\) doesn't matter because if \(a_4 = 4a_1\), then \(a_5 = 20a_1/3 \) is an option.</p>
 <p>Again, we somehow want to show that if \(q \nmid a_1 + a_2 + \dots + a_i\) for any \(i\) then there are only finitely many primes dividing \(a_i\).</p>
-<p><b>After mock</b>: (Okay, let me go back to \(b_k\). By definition, \(2(a_1 + a_2 + \dots + a_{k-1}) = b_ka_k\). Wait, note that
-\[(b_k + 2)a_k = b_{k+1}a_{k+1} = 2(a_1 + a_2 + \dots + a_k) \implies b_k + 2 > b_{k+1}\]
-Omgggg wait so either \(b_i\) is bounded or \(b_i\) goes through every single integer value. Wait never mind because if \(b_i\) is bounded then the prime factors of \(a_i = a_{i-1}(b_{i-1}+2)/b_i\) will be bounded!!! So \(b_i\) goes through every single integer value, which means \(a_1 + a_2 + \dots + a_i\) is divisible by each \(n\) for some \(i\). And now we will take the point \(b_i\) where \(n = b_i\) and \(n + 1 = b_{i+1}\). This gives
-\[(n + 2)a_i = (n+1) a_{i+1} = 2(a_1 + a_2 + \dots + a_i) \]
-and since \(\gcd(n+1,n+2) = 1\), \(n + 1 \mid a_i\), and we are done.)
-</p>
 </div>
 
 <h1>Problem 1229 - A</h1>
