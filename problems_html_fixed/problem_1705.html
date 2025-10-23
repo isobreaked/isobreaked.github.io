@@ -18,6 +18,14 @@ li { margin-bottom: 0.4em; }
 <h1>Problem 1705 - 2016 USA TSTST, P4 of 6, N</h1>
 <h2 class='difficulty'>Difficulty: 7</h2>
 <p>Suppose that \(n\) and \(k\) are positive integers such that\[1 = \underbrace{\varphi( \varphi( \dots \varphi(}_{k\ \text{times}} n) \dots )).\]Prove that \(n \le 3^k\).</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Obviously naive induction fails. I was thinking of looking at the largest prime factor because I thought there must always exist \(> k\) prime factors in a number \(> 3^k\) or something. I forgot what I was doing there. Wait I'm done. What? If \(2^{k+1} \mid n\), of course it will take \(> k\) turns to get rid of the factors of \(2\). Similarly if \(2^k a \mid n\) where \(a\) is some odd number \( > 1\), the \(2^k\) contributes to \(k\) turns to get rid of the \(2\) factors already, and \(a\) is going to contribute some factors of \(2\) after getting \(\varphi\)-ed.</p>
+<p>So suppose \(n = 2^b a\), with \(a \ge \lceil 3^k / 2^b \rceil\). We want to show that anything \( \ge \lceil 3^k / 2^b \rceil\) can produce \(k - b + 1\) factors of \(2\) after getting \(\varphi\)-ed. Suppose \(a\) is a prime \(p\). It goes to \(p - 1\), which contributes at least \(1\) factor of \(2\), and goes to \((p - 1)/2\). Oh, and now we can induct if \((p - 1)/2 \ge \lceil 3^k / 2^{b+1} \rceil \), since then it could produce \(k - b\), and we already have \(1\). But it is possible that \((p-1)/2 = \lfloor 3^k / 2^{b+1} \rfloor\). </p>
+<p>Okay, we can make this much simpler for ourselves - what if we just show that for anything bigger than \(3^b\), we get \(\ge b + 1\) factors of \(2\) - then if we have a prime, dividing by \(2\) cannot possibly skip a whole power of \(3\), and due to induction, we will get at least \(\ge k + 1\). What about non-primes? Suppose we have \(3^b < n = xy\), then if \(3^{a+1} > x > 3^a\), \(y > 3^{b-a-1}\). Due to induction, we get at least \(\ge (a + 1) + (b - a) = b + 1\). So we are done.</p>
+</div>
+<h2>Idea</h2>
+<p>The 'idea' is clear, but KISS is always the way to go.</p>
 <p><a href="../problem_tracker.html">Back to Problem List</a></p>
 </body>
 </html>
