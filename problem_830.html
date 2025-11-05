@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Problem 830</title>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="MathJax-4.0.0/tex-svg.js"></script>
+<style>
+body { font-family: Arial, sans-serif; margin: 40px; }
+h1 { font-size: 1.6em; }
+.difficulty { color: gray; font-size: 0.95em; margin-top: 6px; } .skib {  border-left: 4px solid #000; /* Bold left accent */   background-color: lavender; /* Very light gray */   padding: 1px 20px; /* less top/bottom padding, same left/right */   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Soft depth */}
+p { line-height: 1.45; }
+ol, ul { margin-left: 1.2em; }
+li { margin-bottom: 0.4em; }
+</style>
+</head>
+<body>
+<h1>Problem 830 - 2021 China TST Test 3, P2 of 6, N</h1>
+<h2 class='difficulty'>Difficulty: 7</h2>
+<p>Given distinct positive integer \(a_1,a_2,\dots,a_{2020}\). For \(n \ge 2021\), \(a_n\) is the smallest number different from \(a_1,a_2,\dots,a_{n-1}\) which doesn't divide \(a_{n-2020}\dots a_{n-2}a_{n-1}\). Prove that every number large enough appears in the sequence.</p>
+<h2>Thinking</h2>
+<div class=skib>
+<p>Supposing otherwise would mean that there are always sufficiently large \(k\) which don't appear in the sequence - rather, there are infinitely many numbers that don't appear. Maybe we can try out an inductive approach later. </p>
+<p>First, let us replace \(2020\) by \(1\). So we know \(a_1\), and \(a_2 \neq a_1\) is the smallest number that doesn't divide it. Similarly, \(a_3\) is the smallest distinct number that doesn't divide \(a_2\). Of course, there is always something smaller than \(x\) that doesn't divide \(x\), unless \(x = 2\). But since we keep going smaller, eventually we must reach \(2\), at which point we will have to choose something bigger. Okay, surely we can induct now - suppose \(2\) to \(k\) have been obtained, and we want to show \(k + 1\) can also be obtained. If it's not obtainable, then that means \(k + 1\) divides all the terms of the sequence after a certain point. But this is not possible, because if we consider some sufficiently large \(N\) such that \(k + 1\) divides \(a_N\) and this is bigger than every other member of the sequence (such an \(N\) is bound to occur), it is just absurd because why did we not just choose \(a_N - 1\) (this cannot have appeared because every sufficiently big number that appears is a multiple of \(k+1\)). So we've gotten a simple contradiction for \(2020 = 1\).</p>
+<p>Now consider \(2020 = 2\). Direct size on its own seems hard to deal with here since there are two factors. I'll consider what happens if big \(X\) never occurs in the sequence. After some large \(N\), \(X\) must divide all \(a_na_{n+1}\) such that \(n > N\). Now take \(\gcd(a_i, X) = x_i\) and \(a_i = x_i y_i\). Wait no this is not really good. Instead take \(y_i\) to be the maximum divisor of \(a_i\) such that \(\gcd(y_i, X) = 1\) and \(x_i = a_i/y_i\). Then the idea is that \(y_i \nmid a_{i-1} a_{i-2}\), otherwise since \(\gcd(x_i, y_i) = 1\), we would have \(a_i \mid a_{i-1} a_{i-2}\). So in fact it must be true that all multiples of \(y_i\) that are lesser than \(y_i x_i\) (\(x_i\) in number) must have been already covered. Hmm, but now we've lost the condition that \(x_i \mid X\).
+</p>
+<p>Okay wait, I just realized something for the general case - <b>all sufficiently large primes \(p\) must occur</b>. Basically, suppose that a multiple of a sufficiently large prime appears, then it would practically be 'out of nowhere'. Consider the first multiple of \(p\) that appears, suppose it is \(pa\). But \(p \nmid a_{i-1} \dots a_{i- k}\), so the fact that \(pa\) appears means that every smaller multiple of it must have appeared before. So \(a = 1\) and \(pa = p\). But why would a multiple of \(p\) appear in the first place? Because of the previous paragraph - after some large \(N\), \(p\) must divide all \(a_n a_{n+1} \dots a_{n+k-1}\), and since \(p\) is a prime, it must divide at least one of them individually.</p>
+<p>Suppose \(X = pq\) is large and does not appear in the sequence. Then at least one of \(p\) and \(q\) must be large. And again, let's look at \(2020 = 2\), so that \(pq \mid a_n a_{n+1}\). Wait, but this is off because we have one of every two elements is a multiple of \(p\) - and WLOG \(p\) is the one that is large. This would mean that the sequence eventually grows at a rate of \(+ p\) (for \(p\) arbitrarily large, actually) between \(2\)-cycles. What rate does it actually grow at though? Let us analyze the size of \(a_{n+2}\) just given \(a_n\) and \(a_{n+1}\). Actually wait, what was I even doing till now - of course, \(a_{n+2} \le a_{n+1} + 1\) or \(a_{n+2} \le a_n + 1\) depending on whichever is larger, because \(a_{n+1} + 1\) is coprime to \(a_{n+1}\) and \(a_{n+1} \nmid a_n\) (if \(a_{n+1}\) is larger). So of course growth at the rate of \(p\) is much faster, and absurd.</p>
+<p>Let's look at \(X = pq\) large, with \(p\) large, not appearing in the sequence for \(2020 = 3\), so that \(pq \mid a_na_{n+1}a_{n+2}\). Basically, again, we just want to analyze the size of \(a_{n+3}\) only given \(a_n\), \(a_{n+1}\) and \(a_{n+2}\). Suppose because why not that \(a_{n+2}\) is the largest. Then, \(a_{n+2} + 1\) is coprime to \(a_{n+2}\), and so supposedly must divide \(a_na_{n+1}\). Aha! But now, \(a_{n+2} + 2\), which has \(\gcd \le 2\) with \(a_{n+2}\) and \(\gcd = 1\) with \(a_{n+2} + 1\) must divide \(a_n a_{n+1}\) or \(2a_n a_{n+1}\). This means that 
+\[(a_{n+2} + 1)(a_{n+2} + 2) \mid 2a_n a_{n+1} \implies a_{n+2}^2 \le 2a_na_{n+1}\]
+which is actually still not invalid, but we can fix that by simply considering \(a_{n+2} + 3\). Now this has \(\gcd \le 3\) with \(a_{n+2}\), and \(\gcd \le 2\) with \(a_{n+2} + 1\). So, we have something like
+\[a_{n+2}^3 \le C a_n a_{n+1}\]
+for some fixed \(C \le 20\) or something. This is clearly false for \(n\) large since \(a_{n+2} > a_n\) and \(a_{n+2} > a_{n+1}\). So we have \(a_{n+3} \le \max(a_n, a_{n+1}, a_{n+2}) + 3\), which means \(\max(a_{n+3}, a_{n+4}, a_{n+5}) \le \max(a_n, a_{n+1}, a_{n+2}) + 9\) or something. This of course, is again known constant linear growth, which is much smaller than \(+p\) growth, which is arbitrarily large linear growth. Very nice!</p>
+<p>I see the general argument for \(pq\). We basically take the LCM of \(\{\max(a_n, a_{n+1}, \dots, a_{n+k}) + i : 1 \le i \le k + 1\}\) or something, which is bigger than the product of the non-maximum terms for large \(n\) regardless of the constant factor \(C\). So we get known constant linear growth for \(a_n\), but at the same time, \(+p\) growth, which is arbitrarily large linear growth and completely dominates known constant linear growth because... it's arbitrarily large. This argument extends to general \(X\) squarefree, and also \(X\) having small exponents for the primes - because this argument hinges on the existence of a <b>"large" prime divisor \(p\)</b>. </p>
+<p>Now, if the exponents of the primes are "large" (what does large mean?), which means the primes can be small, then we are cooked. For example, what happens if \(X = 3^r\)? Actually, wait, we might not be cooked. Because 
+\[3^r \mid a_{n+1} \dots a_{n+k} \implies \exists 1 \le i \le k : 3^{r/k} \mid a_{n+i}\]
+But \(3^{r/k}\) just simulates \(p\) now, because we have that the growth is eventually at the rate \(+3^{r/k}\), which is arbitrarily large linear growth (take \(r\) large), and once again, completely dominates known constant linear growth seen to be demonstrated by \(\{a_i\}\). Thus, in general when we have small primes \(p_1\), \(p_2\), \(\dots\), \(p_s\), then sufficiently large numbers of the form \(p_1^{\alpha_1} p_2^{\alpha_2} \dots p_s^{\alpha_s}\) are fine and work because of the exponent.</p>
+<p>So we have seen why sufficiently large numbers with "small exponents" work. We have seen why sufficiently large numbers with "small primes" work. What's left? A better question would be - what in the world is the definition of "small"? Also when did this turn into like a solution walkthrough rather than my thinking (imagine this is all fake). I see now - the important thing is that we know a constant bound for the constant rate of growth of \(\{a_i\}\) - because \(2020\). So we have two conditions that define the two cases:
+<ol>
+<li>large prime: largest prime is bigger than constant \(E\)</li>
+<li>large exponent: sum of exponents \(\alpha_i\) is bigger than constant \(F\)</li>
+</ol>
+And of course, the number of numbers that satisfy neither of these conditions is finite! So, we are done.
+</p>
+</div>
+<h2>Idea</h2>
+<p>Absolutely wonderful - I did take some hints, which made the whole solution very much more streamlined after a certain point, but this was definitely just doable with small case analysis, a recurring pattern I'm seeing in hard problems recently (referring to USEMO 2025 P5 here).</p>
+<p><a href="../problem_tracker.html">Back to Problem List</a></p>
+</body>
+</html>
